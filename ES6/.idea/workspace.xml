@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05842980-9ccd-4bd6-a2cf-6a416bd7481d" name="Default Changelist" comment="" />
+    <list default="true" id="05842980-9ccd-4bd6-a2cf-6a416bd7481d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../bai_tap/ES6/ES6.html" beforeDir="false" afterPath="$PROJECT_DIR$/../bai_tap/ES6/ES6.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685677255693</updated>
-      <workItem from="1685677256882" duration="2380000" />
+      <workItem from="1685677256882" duration="2691000" />
     </task>
     <servers />
   </component>
