@@ -35,13 +35,25 @@ const students = [
 function App() {
   return (
       <>
-      {students.map(student => (
-            <tr>
-              <td>{student.company}</td>
-              <td>{student.contact}</td>
-              <td>{student.country}</td>
-            </tr>
-        ))}
+          <h1>Student</h1>
+          <table className="table">
+              <thead>
+              <tr>
+                  <th>Company</th>
+                  <th>Contact</th>
+                  <th>Country</th>
+              </tr>
+              </thead>
+              <tbody>
+              {students.map(student => (
+                  <tr>
+                      <td>{student.company}</td>
+                      <td>{student.contact}</td>
+                      <td>{student.country}</td>
+                  </tr>
+              ))}
+              </tbody>
+          </table>
         </>
   );
 }
