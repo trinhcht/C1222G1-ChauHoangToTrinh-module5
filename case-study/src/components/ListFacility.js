@@ -671,7 +671,7 @@ export class ListFacility extends Component {
 
                 </>
                 <>
-                    {/*<Footer/>*/}
+                    <Footer/>
                 </>
             </>
 

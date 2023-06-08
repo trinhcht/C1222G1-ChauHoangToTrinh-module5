@@ -7,11 +7,11 @@ import {ListFacility} from "./components/ListFacility";
 function App() {
     return (
         <>
-            <Header/>
+            {/*<Header/>*/}
             {/*<h1>ffff</h1>*/}
             {/*<h1>ffff</h1>*/}
             <ListFacility/>
-            <Footer/>
+            {/*<Footer/>*/}
         </>
     );
 }
