@@ -1,14 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import React from "react";
-import CountOne from "./component/CountOne";
+import Count from "./component/Count";
 
 function App() {
-  return (
-      <>
-        <CountOne/>
-      </>
-  );
+    return (
+        <>
+        <Count/>
+        </>
+);
 }
 
 export default App;
