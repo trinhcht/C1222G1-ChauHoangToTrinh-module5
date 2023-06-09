@@ -32,7 +32,7 @@ export function HealthDeclaration() {
                         name: Yup.string().required('Không được bỏ trống'),
                         id: Yup.string().required('Không được bỏ trống'),
                         yearOfBirth: Yup.number().integer('Không được bỏ trống')
-                            .min(1990),
+                            .min(1900),
                         nationality: Yup.string().required('Không được bỏ trống'),
                         province: Yup.string().required('Không được bỏ trống'),
                         district: Yup.string().required('Không được bỏ trống'),
@@ -80,7 +80,7 @@ export function HealthDeclaration() {
                                                 type="radio"
                                                 name="gender"
                                                 id="rd-1"
-                                                value="1"
+                                                value="Nam"
                                             />
                                             <label className="form-check-label" htmlFor="rd-1">
                                                 Nam
@@ -92,7 +92,7 @@ export function HealthDeclaration() {
                                                 type="radio"
                                                 name="gender"
                                                 id="rd-2"
-                                                value="2"
+                                                value="Nữ"
                                             />
                                             <label className="form-check-label" htmlFor="rd-2">
                                                 Nữ

@@ -10,15 +10,15 @@ export function ContactForm() {
         <>
             <Formik
                 initialValues={{
-                    name: 'Nguyễn Văn A',
-                    email: 'nguyenvana@gmail.com',
-                    phone: '0329987373',
-                    message: 'aaaaaaaaaa'
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: ''
                 }}
                 validationSchema={Yup.object({
                     name: Yup.string().required("Không được để trống"),
                     email: Yup.string().required("Không được để trống").matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/),
-                    phone: Yup.number().integer().required("Không được để trống"),
+                    phone: Yup.number().string().required("Không được để trống"),
 
                 })}
                 onSubmit={(values, {setSubmitting}) => {
