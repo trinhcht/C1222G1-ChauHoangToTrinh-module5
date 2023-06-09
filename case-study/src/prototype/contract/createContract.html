@@ -21,6 +21,9 @@
             z-index: 999;
             transition: top 0.3s;
         }
+        .start {
+            color:red;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +65,7 @@
 
 <div style="margin-top: 96px;background-color: rgb(245,228,248);">
     <div class="row mx-0">
-        <div class="col-6">
+        <div class="col-5">
             <div class="text-center fw-bold" style="margin-top: 5%">
                 <h2>
                     Thêm Mới Hợp Đồng
@@ -73,54 +76,57 @@
                     <table class="" style="width: 500px;">
                         <tr style="height: 60px;">
                             <th >
-                                <label class="fs-5" for="">Mã hợp đồng: </label>
+                                <label class="fs-5" for="">Mã hợp đồng(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control " name="" placeholder="Nhập mã hợp đồng">
+                                <input type="text" class="form-control " name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Ngày bắt đầu: </label>
+                                <label class="fs-5" for="">Ngày bắt đầu(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="date" class="form-control" name="" placeholder="Nhập ngày bắt đầu">
+                                <input type="date" class="form-control" name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Ngày kết thúc: </label>
+                                <label class="fs-5" for="">Ngày kết thúc(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="date" class="form-control" name="" placeholder="Nhập ngày kết thúc">
+                                <input type="date" class="form-control" name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Số tiền cọc trước: </label>
+                                <label class="fs-5" for="">Số tiền cọc trước(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control" name="" placeholder="Nhập số tiền cọc trước">
+                                <input type="text" class="form-control" name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;width: auto">
                             <th>
-                                <label class="fs-5" for="">Tổng số tiền thanh toán: </label>
+                                <label class="fs-5" for="">Tổng số tiền thanh toán(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control " name="" placeholder="Nhập tổng số tiền thanh toán">
+                                <input type="text" class="form-control " name="">
                             </td>
                         </tr>
                         <tr style="height: 120px;">
-                            <td>
-                                <button class="btn btn-primary float-end">Xác nhận</button>
+                            <td colspan="2">
+                                <div style="margin-left: 10rem;">
+                                    <button class="btn btn-dark me-4">Trở về</button>
+                                    <button class="btn btn-primary">Xác nhận</button>
+                                </div>
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
         </div>
-        <div class="col-6 p-0">
+        <div class="col-7 p-0">
             <img class="w-100 h-100 " src="https://furamavietnam.com/wp-content/uploads/2023/06/update-COUPLE-RETREAT-3D2N-08.jpg"  alt="">
         </div>
     </div>

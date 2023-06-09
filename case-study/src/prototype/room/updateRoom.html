@@ -21,6 +21,9 @@
             z-index: 999;
             transition: top 0.3s;
         }
+        .start {
+            color:red;
+        }
     </style>
 
 </head>
@@ -62,21 +65,19 @@
 </header>
 <div><h2 class="text-center pt-4"></h2></div>
 <div class="row mx-0" style="margin-top: 96px; background-color: rgb(245,228,248);">
-    <div class="col-7">
+    <div class="col-5">
         <div >
-            <h2 class="text-center fw-bold mt-3">
+            <h2 class="text-center mt-3" style="margin-top: 7%;">
                 Chỉnh sửa thông tin phòng
             </h2>
         </div>
-        <div class="dropdown text-center mt-3" style="padding-right: 360px;">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Danh sách cơ sở
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Phòng</a></li>
-                <li><a class="dropdown-item" href="#">Biệt thự</a></li>
-                <li><a class="dropdown-item" href="#">Căn hộ</a></li>
-            </ul>
+        <div class="dropdown text-center mt-3 me-4" style="padding-right: 360px;">
+            <select class="form-select mt-3" aria-label="Danh sách cơ sở" style="margin-left: 20rem;">
+                <option selected>Danh sách cơ sở</option>
+                <option value="Phòng">Phòng</option>
+                <option value="Biệt thự">Biệt thự</option>
+                <option value="Căn hộ">Căn hộ</option>
+            </select>
         </div>
         <div class="d-flex justify-content-center mt-3">
             <form action="" >
@@ -84,7 +85,7 @@
                     <input type="hidden" id="">
                     <tr style="height: 60px;">
                         <th >
-                            <label class="fs-5" for="">Tên dịch vụ: </label>
+                            <label class="fs-5" for="">Tên dịch vụ(<span class="start">*</span>): </label>
                         </th>
                         <td>
                             <input type="text" class="form-control " name="" value="">
@@ -92,7 +93,7 @@
                     </tr>
                     <tr style="height: 60px;">
                         <th>
-                            <label class="fs-5" for="">Diện tích sử dụng: </label>
+                            <label class="fs-5" for="">Diện tích sử dụng(<span class="start">*</span>): </label>
                         </th>
                         <td>
                             <input type="text" class="form-control" name="" value="">
@@ -100,7 +101,7 @@
                     </tr>
                     <tr style="height: 60px;">
                         <th>
-                            <label class="fs-5" for="">Chi phí thuê: </label>
+                            <label class="fs-5" for="">Chi phí thuê(<span class="start">*</span>): </label>
                         </th>
                         <td>
                             <input type="text" class="form-control" name="" value="">
@@ -108,7 +109,7 @@
                     </tr>
                     <tr style="height: 60px;">
                         <th>
-                            <label class="fs-5" for="">Số lượng người tối đa: </label>
+                            <label class="fs-5" for="">Số lượng người tối đa(<span class="start">*</span>): </label>
                         </th>
                         <td>
                             <input type="text" class="form-control" name="" value="">
@@ -116,7 +117,7 @@
                     </tr>
                     <tr style="height: 60px;">
                         <th>
-                            <label class="fs-5" for="">Kiểu thuê: </label>
+                            <label class="fs-5" for="">Kiểu thuê(<span class="start">*</span>): </label>
                         </th>
                         <td>
                             <input type="text" class="form-control " name="" value="">
@@ -124,23 +125,26 @@
                     </tr>
                     <tr style="height: 60px;">
                         <th>
-                            <label class="fs-5" for="">Dịch vụ miễn phí đi kèm: </label>
+                            <label class="fs-5" for="">Dịch vụ miễn phí đi kèm(<span class="start">*</span>): </label>
                         </th>
                         <td>
                             <input type="text" class="form-control " name="" value="">
                         </td>
                     </tr>
                     <tr style="height: 120px;">
-                        <td>
-                            <button class="btn btn-primary float-end">Xác nhận</button>
+                        <td colspan="2">
+                            <div style="margin-left: 10rem;">
+                                <button class="btn btn-dark me-4">Trở về</button>
+                                <button class="btn btn-primary">Xác nhận</button>
+                            </div>
                         </td>
                     </tr>
                 </table>
             </form>
         </div>
     </div>
-    <div class="col-5 p-0">
-        <img class="w-100 h-100" src="https://furamavietnam.com/wp-content/uploads/2018/03/Presidential-Suite-F-370x239.jpg" alt="">
+    <div class="col-7 p-0">
+        <img class="w-100 h-100" src="https://du-lich.chudu24.com/f/m/2105/17/furama-da-nang-resort-52.jpg?w=800&h=500" alt="">
     </div>
 </div>
 

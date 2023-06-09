@@ -21,6 +21,9 @@
             z-index: 999;
             transition: top 0.3s;
         }
+        .start {
+            color:red;
+        }
     </style>
 
 </head>
@@ -63,7 +66,7 @@
 <div><h2 class="text-center pt-4"></h2></div>
 <div style="margin-top: 96px;background-color: rgb(245,228,248);">
     <div class="row mx-0">
-        <div class="col-6">
+        <div class="col-5">
             <div class="text-center fw-bold" style="margin-top: 5%">
                 <h2>
                     Thêm mới khách hàng
@@ -74,57 +77,57 @@
                     <table class="" style="width: 500px;">
                         <tr style="height: 60px;">
                             <th >
-                                <label class="fs-5" for="">Họ và tên: </label>
+                                <label class="fs-5" for="">Họ và tên(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control " name="" placeholder="Nhập họ và tên">
+                                <input type="text" class="form-control " name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Ngày sinh: </label>
+                                <label class="fs-5" for="">Ngày sinh(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="date" class="form-control" name="" placeholder="Nhập ngày sinh">
+                                <input type="date" class="form-control" name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Giới tính: </label>
+                                <label class="fs-5" for="">Giới tính(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="radio"  name="gender">Nam
-                                <input type="radio"  name="gender" style="margin-left: 20px" >Nữ
-                                <input type="radio"  name="gender" style="margin-left: 20px" >Khác
+                                <input type="radio"  name="gender" style=""> Nam
+                                <input type="radio"  name="gender" style="margin-left: 20px" > Nữ
+                                <input type="radio"  name="gender" style="margin-left: 20px" > Khác
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Số CMND: </label>
+                                <label class="fs-5" for="">Số CMND(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control" name="" placeholder="Nhập số CMND">
+                                <input type="text" class="form-control" name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Số điện thoại: </label>
+                                <label class="fs-5" for="">Số điện thoại(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control " name="" placeholder="Nhập số điện thoại">
+                                <input type="text" class="form-control " name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Email: </label>
+                                <label class="fs-5" for="">Email(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control " name="" placeholder="Nhập email">
+                                <input type="text" class="form-control " name="">
                             </td>
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Loại khách: </label>
+                                <label class="fs-5" for="">Loại khách(<span class="start">*</span>): </label>
                             </th>
                             <td>
                                 <select  class="form-select" name="" id="" >
@@ -138,24 +141,26 @@
                         </tr>
                         <tr style="height: 60px;">
                             <th>
-                                <label class="fs-5" for="">Địa chỉ: </label>
+                                <label class="fs-5" for="">Địa chỉ(<span class="start">*</span>): </label>
                             </th>
                             <td>
-                                <input type="text" class="form-control " name="" placeholder="Nhập địa chỉ">
+                                <input type="text" class="form-control " name="">
                             </td>
                         </tr>
                         <tr style="height: 120px;">
-                            <td></td>
-                            <td>
-                                <button class="btn btn-primary float-start">Xác nhận</button>
+                            <td colspan="2">
+                                <div style="margin-left: 10rem;">
+                                    <button class="btn btn-dark me-4">Trở về</button>
+                                    <button class="btn btn-primary">Xác nhận</button>
+                                </div>
                             </td>
                         </tr>
                     </table>
                 </form>
             </div>
         </div>
-        <div class="col-6 px-0">
-            <img class="w-100 h-100 " src="https://bachkhoaland.com/wp-content/uploads/2021/05/furamaresort-2.jpg" alt="">
+        <div class="col-7 px-0">
+            <img class="w-100 h-100 " src="https://toquoc.mediacdn.vn/2020/1/31/img202001311234197-15804731344592016284671.jpg" alt="">
         </div>
     </div>
 </div>
