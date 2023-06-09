@@ -2,9 +2,14 @@ import React, {Component} from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {accompaniedService, facilityData} from "../data/FacilityData";
+import {useNavigate} from "react-router-dom";
 
-export class ListFacility extends Component {
-    render() {
+export const  ListFacility = () => {
+    const navigate = useNavigate();
+    const hanleNavigation = (url) =>{
+        navigate(url);
+    }
+
         return (
             <>
                 <>
@@ -48,7 +53,7 @@ export class ListFacility extends Component {
                                     <path
                                         d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
                                 </svg>
-                                <a href="#" style={{textDecoration: "none", color: "#1d1d1d"}}>
+                                <a onClick={() => hanleNavigation('create')} style={{textDecoration: "none", color: "#1d1d1d"}}>
                                     <i className="bi bi-cart4"> Thêm phòng mới</i>
                                 </a>
                             </button>
@@ -61,6 +66,7 @@ export class ListFacility extends Component {
                                         src={facility.img}
                                         className="card-img-top"
                                         alt="..."
+                                        style={{height: "15rem"}}
                                     />
                                     <div className="card-body">
                                         <h5 className="card-title">{facility.nameFacility}</h5>
@@ -69,7 +75,7 @@ export class ListFacility extends Component {
                                             (accompaniedService) => accompaniedService.id===facility.accompaniedService) ?.name
                                         }</p>
                                         {/*button edit, delete*/}
-                                        <a href="#" className="btn btn-primary" style={{marginRight: "1rem"}}>
+                                        <a  className="btn btn-primary" style={{marginRight: "1rem"}}>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 width={16}
@@ -77,6 +83,7 @@ export class ListFacility extends Component {
                                                 fill="currentColor"
                                                 className="bi bi-pencil-square"
                                                 viewBox="0 0 16 16"
+                                                onClick={() => hanleNavigation('update')}
                                             >
                                                 <path
                                                     d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -91,6 +98,7 @@ export class ListFacility extends Component {
                                             className="btn btn-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#exampleModal"
+                                            // onClick={()=>window.location.href = 'http://localhost:3000/update'}
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -682,6 +690,4 @@ export class ListFacility extends Component {
             </>
 
         )
-    }
-
 }
