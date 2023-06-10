@@ -3,27 +3,45 @@ import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {accompaniedService, facilityData} from "../data/FacilityData";
 import {useNavigate} from "react-router-dom";
+import dbData from "../db.json"
 
 export const  ListFacility = () => {
     const navigate = useNavigate();
-    const [facilitys, setFacilitys] = useState(facilityData)
+    const [facilitys, setFacilitys] = useState(dbData.facilitiesList)
     const [isShow, setIsShow] = useState(false)
-    // const [dataUpdate, setDataUpdate] = useState({})
-    const [isUpdate, setIdUpdate] = useState();
+    const [values, setValues] = useState({})
+    const [idUpdate, setIdUpdate] = useState();
+    const [type, setType] = useState("0")
     const hanleNavigation = (idToUpdate) =>{
         navigate(`/update/${idToUpdate}`);
     }
+    // facilitiesType
+    console.log({facilitys: facilitys.length})
 
     const handleUpdate= (id) => {
         setIsShow(true)
         setIdUpdate(id);
+        const current = facilitys.find(o => o.id == id);
+        setType(current?.facilitiesType);
+        setValues(current);
 
     }
 
     const onUpdate = () => {
-
+        const newValues = [...facilitys];
+        const index = newValues.findIndex(o => o.id === idUpdate)
+        newValues[index] = values;
+        setFacilitys(newValues);
+        setIsShow(false)
     }
-    const dataUpdate = facilitys.find(o => o.id === isUpdate);
+
+    const onChange = (e, name)=>{
+        setValues(prev => ({
+            ...prev,
+            [name]: e.target.value
+        }))
+    }
+    const dataUpdate = facilitys.find(o => o.id === idUpdate);
 
     return (
         <>
@@ -74,7 +92,7 @@ export const  ListFacility = () => {
                         </button>
                     </div>
                     <div className="row mx-0 mt-3 py-1" style={{padding: "0 100px"}}>
-                        {facilityData.map((facility,index) => (
+                        {facilitys.map((facility,index) => (
                             <div className="col-4 d-flex justify-content-center" style={{marginBottom:"2rem"}}>
                                 <div className="card" style={{ width: 380 }}>
                                     <img
@@ -84,11 +102,10 @@ export const  ListFacility = () => {
                                         style={{height: "15rem"}}
                                     />
                                     <div className="card-body">
-                                        <h5 className="card-title">{facility.nameFacility}</h5>
-                                        <p className="card-text">Diện tích phòng: {facility.usableArea} </p>
-                                        <p>Dịch vụ đi kèm: {accompaniedService.find(
-                                            (accompaniedService) => accompaniedService.id===facility.accompaniedService) ?.name
-                                        }</p>
+                                        <h5 className="card-title">{facility.name}</h5>
+                                        <p className="card-text">Diện tích phòng: {facility.area} </p>
+                                        <p className="card-text">Loại Phòng: {dbData.facilitiesType.find(o => o.id == facility.facilitiesType)?.name} </p>
+                                        <p>Dịch vụ đi kèm: {facility.serviceFree}</p>
                                         {/*button edit, delete*/}
                                         <button
                                             type="button"
@@ -181,9 +198,25 @@ export const  ListFacility = () => {
                     </div>
 
                     <div className="modal"  id="exampleModal" tabIndex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true" style={{display: isShow ? 'block' : "none"}}>
+                         aria-labelledby="exampleModalLabel" aria-hidden="true" style={isShow ? {display:'block'} : {}}>
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
+                                <select value={type} className="form-select mt-3" aria-label="Danh sách cơ sở"
+                                        style={{marginLeft: "20rem"}}
+                                        onChange={(e)=>{
+                                            setType(e.target.value)
+                                            setValues(prev => ({
+                                                ...prev,
+                                                facilitiesType: e.target.value
+                                            }))
+                                        }}
+                                >
+                                    <option value="0">Danh sách cơ sở</option>
+                                    <option value="1">Phòng</option>
+                                    <option value="2">Căn hộ</option>
+                                    <option value="3">Biệt thự</option>
+                                </select>
+
                                 <table className="" style={{width: 500}}>
                                     <input type="hidden" id=""/>
                                     <tbody>
@@ -198,7 +231,10 @@ export const  ListFacility = () => {
                                                 type="text"
                                                 className="form-control "
                                                 name=""
-                                                defaultValue={dataUpdate?.nameFacility}
+                                                defaultValue={dataUpdate?.name}
+                                                onChange={(e) => {
+                                                    onChange(e, 'name')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -213,7 +249,10 @@ export const  ListFacility = () => {
                                                 type="text"
                                                 className="form-control"
                                                 name=""
-                                                defaultValue={dataUpdate?.usableArea}
+                                                defaultValue={dataUpdate?.area}
+                                                onChange={(e) => {
+                                                    onChange(e, 'area')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -229,6 +268,9 @@ export const  ListFacility = () => {
                                                 className="form-control"
                                                 name=""
                                                 defaultValue={dataUpdate?.price}
+                                                onChange={(e) => {
+                                                    onChange(e, 'price')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -244,6 +286,9 @@ export const  ListFacility = () => {
                                                 className="form-control"
                                                 name=""
                                                 defaultValue={dataUpdate?.people}
+                                                onChange={(e) => {
+                                                    onChange(e, 'people')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -258,7 +303,10 @@ export const  ListFacility = () => {
                                                 type="text"
                                                 className="form-control "
                                                 name=""
-                                                defaultValue={dataUpdate?.rentalType}
+                                                defaultValue={dataUpdate?.rentType}
+                                                onChange={(e) => {
+                                                    onChange(e, 'rentType')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -273,26 +321,19 @@ export const  ListFacility = () => {
                                                 type="text"
                                                 className="form-control "
                                                 name=""
-                                                defaultValue={dataUpdate?.freeService}
+                                                defaultValue={dataUpdate?.serviceFree}
+                                                onChange={(e) => {
+                                                    onChange(e, 'serviceFree')
+                                                }}
                                             />
-                                        </td>
-                                    </tr>
-                                    <tr style={{height: 120}}>
-                                        <td>
-                                            <button
-                                                className="btn btn-primary float-end"
-                                                onClick={onUpdate}
-                                            >
-                                                Xác nhận
-                                            </button>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close
+                                    <button type="button" onClick={()=>setIsShow(false)} className="btn btn-secondary" data-dismiss="modal">Close
                                     </button>
-                                    <button type="button" className="btn btn-primary">Save changes</button>
+                                    <button type="button" onClick={onUpdate} className="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
