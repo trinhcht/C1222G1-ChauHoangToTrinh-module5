@@ -4,6 +4,7 @@ import {ListFacility} from "./components/ListFacility";
 import {NavLink, Route, Routes, createBrowserRouter, RouterProvider} from "react-router-dom"
 import {UpdateFacility} from "./components/UpdateFacility";
 import {CreateFacility} from "./components/CreateFacility";
+import {ListCustomer} from "./components/ListCustomer";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         element: <CreateFacility />,
 
     },
+    {
+        path: "/customer",
+        element: <ListCustomer />,
+    }
 ]);
 
 function App() {
@@ -30,17 +35,6 @@ function App() {
                 router={router}
             />
 
-            {/*<NavLink to='/create'></NavLink>*/}
-
-            {/*<Routes>*/}
-            {/*  <Route path='/' element={ListFacility}/>*/}
-            {/*    <Route path='/update' element={UpdateFacility}/>*/}
-            {/*</Routes>*/}
-            {/*<Header/>*/}
-            {/*<h1>ffff</h1>*/}
-            {/*<h1>ffff</h1>*/}
-
-            {/*<Footer/>*/}
         </>
     );
 }
