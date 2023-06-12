@@ -12,7 +12,7 @@ const router = createBrowserRouter([
 
     },
     {
-        path: "/update",
+        path: "/update/:id",
         element: <UpdateFacility />,
 
     },
