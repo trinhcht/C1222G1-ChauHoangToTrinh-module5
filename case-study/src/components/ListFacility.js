@@ -1,13 +1,14 @@
-import React, { useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {accompaniedService, facilityData} from "../data/FacilityData";
 import {useNavigate} from "react-router-dom";
-import dbData from "../db.json"
+import {findAll, getFacilitiesType, update} from "../service/FacilityService";
 
 export const  ListFacility = () => {
     const navigate = useNavigate();
-    const [facilitys, setFacilitys] = useState(dbData.facilitiesList)
+    const [facilitys, setFacilitys] = useState([])
+    const [facilityTypes, setFacilityTypes] = useState([])
     const [isShow, setIsShow] = useState(false)
     const [values, setValues] = useState({})
     const [idUpdate, setIdUpdate] = useState();
@@ -15,24 +16,34 @@ export const  ListFacility = () => {
     const hanleNavigation = (idToUpdate) =>{
         navigate(`/update/${idToUpdate}`);
     }
-    // facilitiesType
-    console.log({facilitys: facilitys.length})
 
     const handleUpdate= (id) => {
         setIsShow(true)
         setIdUpdate(id);
-        const current = facilitys.find(o => o.id == id);
+        const current = facilitys.find(o => o.id === id);
         setType(current?.facilitiesType);
         setValues(current);
-
     }
 
-    const onUpdate = () => {
-        const newValues = [...facilitys];
-        const index = newValues.findIndex(o => o.id === idUpdate)
-        newValues[index] = values;
-        setFacilitys(newValues);
-        setIsShow(false)
+    const getListFacilities = async () => {
+        const listFacilities = await findAll();
+        setFacilitys(listFacilities);
+    }
+
+    const onUpdate = async () => {
+        // const newValues = [...facilitys];
+        // const index = newValues.findIndex(o => o.id === idUpdate)
+        // newValues[index] = values;
+        // setFacilitys(newValues);
+
+        console.log(JSON.stringify(values));
+
+        setIsShow(false);
+        await update({
+            ...values,
+            facilitiesType: +values.facilitiesType
+        });
+        await getListFacilities();
     }
 
     const onChange = (e, name)=>{
@@ -42,6 +53,15 @@ export const  ListFacility = () => {
         }))
     }
     const dataUpdate = facilitys.find(o => o.id === idUpdate);
+
+    useEffect(() => {
+        getListFacilities();
+        const fetchFacilityTypes = async () => {
+            const data = await getFacilitiesType();
+            setFacilityTypes(data);
+        }
+        fetchFacilityTypes()
+    }, [])
 
     return (
         <>
@@ -104,7 +124,7 @@ export const  ListFacility = () => {
                                     <div className="card-body">
                                         <h5 className="card-title">{facility.name}</h5>
                                         <p className="card-text">Diện tích phòng: {facility.area} </p>
-                                        <p className="card-text">Loại Phòng: {dbData.facilitiesType.find(o => o.id == facility.facilitiesType)?.name} </p>
+                                        <p className="card-text">Loại Phòng: {facilityTypes.find(o => o.id === facility.facilitiesType)?.name} </p>
                                         <p>Dịch vụ đi kèm: {facility.serviceFree}</p>
                                         {/*button edit, delete*/}
                                         <button

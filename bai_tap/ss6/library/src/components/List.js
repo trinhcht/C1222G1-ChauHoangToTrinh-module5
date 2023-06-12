@@ -16,7 +16,7 @@ export function List() {
             setBookList(result);
         };
         listAllBook();
-    }, [deletedId]);
+    }, []);
 
     const handleDelete = async () => {
         try {

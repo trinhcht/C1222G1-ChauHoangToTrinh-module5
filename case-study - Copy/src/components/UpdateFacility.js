@@ -1,34 +1,40 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
-import {Dropdown} from "./Dropdown";
-import { useNavigate,useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {facilityData} from "../data/FacilityData";
 import {findAll, getFacilitiesType, update} from "../service/FacilityService";
+import dbData from "../db.json"
+
 export const UpdateFacility = () => {
     let params = useParams();
+    const data = dbData.facilitiesList.find(facility => facility.id == params.id);
+    console.log("data", data)
     const navigate = useNavigate();
     const [facilitys, setFacilitys] = useState([])
     const [facilityTypes, setFacilityTypes] = useState([])
     const [isShow, setIsShow] = useState(false)
     const [values, setValues] = useState({})
     const [idUpdate, setIdUpdate] = useState();
-    const [type, setType] = useState("0")
-    const hanleNavigation = (idToUpdate) =>{
+    const [type, setType] = useState(data.facilitiesType)
+    const hanleNavigation = (idToUpdate) => {
         navigate(`/update/${idToUpdate}`);
     }
-    const data = facilityData.find(facility => facility.id == params.id);
+
 
     const onUpdate = async () => {
-        setIsShow(false);
+        // setIsShow(false);
         await update({
+            ...data,
             ...values,
             facilitiesType: +values.facilitiesType
         });
         await getListFacilities();
+        navigate('/');
     }
 
-    const handleUpdate= (id) => {
+
+    const handleUpdate = (id) => {
         setIsShow(true)
         setIdUpdate(id);
         const current = facilitys.find(o => o.id === id);
@@ -41,7 +47,7 @@ export const UpdateFacility = () => {
         setFacilitys(listFacilities);
     }
 
-    const onChange = (e, name)=>{
+    const onChange = (e, name) => {
         setValues(prev => ({
             ...prev,
             [name]: e.target.value
@@ -58,7 +64,6 @@ export const UpdateFacility = () => {
         fetchFacilityTypes()
     }, [])
 
-    console.log({data})
     return (
         <>
             <>
@@ -106,7 +111,10 @@ export const UpdateFacility = () => {
                                                 type="text"
                                                 className="form-control "
                                                 name=""
-                                                defaultValue={data?.nameFacility}
+                                                defaultValue={data?.name}
+                                                onChange={(e) => {
+                                                    onChange(e, 'name')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -121,7 +129,10 @@ export const UpdateFacility = () => {
                                                 type="text"
                                                 className="form-control"
                                                 name=""
-                                                defaultValue={data?.usableArea}
+                                                defaultValue={data?.area}
+                                                onChange={(e) => {
+                                                    onChange(e, 'area')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -137,6 +148,9 @@ export const UpdateFacility = () => {
                                                 className="form-control"
                                                 name=""
                                                 defaultValue={data?.price}
+                                                onChange={(e) => {
+                                                    onChange(e, 'price')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -152,6 +166,9 @@ export const UpdateFacility = () => {
                                                 className="form-control"
                                                 name=""
                                                 defaultValue={data?.people}
+                                                onChange={(e) => {
+                                                    onChange(e, 'people')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -166,7 +183,10 @@ export const UpdateFacility = () => {
                                                 type="text"
                                                 className="form-control "
                                                 name=""
-                                                defaultValue={data?.rentalType}
+                                                defaultValue={data?.rentType}
+                                                onChange={(e) => {
+                                                    onChange(e, 'rentType')
+                                                }}
                                             />
                                         </td>
                                     </tr>
@@ -181,15 +201,21 @@ export const UpdateFacility = () => {
                                                 type="text"
                                                 className="form-control "
                                                 name=""
-                                                defaultValue={data?.freeService}
+                                                defaultValue={data?.serviceFree}
+                                                onChange={(e) => {
+                                                    onChange(e, 'serviceFree')
+                                                }}
                                             />
                                         </td>
                                     </tr>
                                     <tr style={{height: 120}}>
                                         <td>
+                                            <button type="button" onClick={() => setIsShow(false)}
+                                                    className="btn btn-secondary"
+                                                    data-dismiss="modal">Close
+                                            </button>
                                             <button
-                                                className="btn btn-primary float-end"
-                                                onClick={onUpdate}
+                                                type="button" onClick={onUpdate} className="btn btn-primary"
                                             >
                                                 Xác nhận
                                             </button>
