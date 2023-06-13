@@ -1,10 +1,34 @@
-import React, {Component} from "react";
+import React from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import '../index.css'
-export class CreateFacility extends Component{
-    render() {
-        return (
+import {useNavigate} from "react-router-dom";
+import {Formik} from "formik";
+import * as FacilityService from "../service/FacilityService";
+
+
+export function CreateFacility() {
+    const navigate = useNavigate();
+    return (
+        <Formik
+            initiaValues ={{
+            img: "",
+            facilitiesType: "",
+            name: "",
+            area: "",
+            price: "",
+            people: "",
+            rentType: "",
+            serviceFree: "",
+        }}
+        onSubmit={(values) =>{
+            const create = async ()=>{
+                await FacilityService.save(values)
+                navigate('/')
+            }
+            create();
+        }}
+        >
             <>
                 <>
                     <Header/>
@@ -12,23 +36,25 @@ export class CreateFacility extends Component{
                 <>
                     <div
                         className="row mx-0"
-                        style={{ marginTop: 96, backgroundColor: "rgb(232, 235, 219)" }}
+                        style={{marginTop: 96, backgroundColor: "rgb(232, 235, 219)"}}
                     >
                         <div className="col-7">
                             <div>
-                                <h2 className="text-center mt-3" style={{ marginTop: "7%" }}>
+                                <h2 className="text-center mt-3" style={{marginTop: "7%"}}>
                                     Thêm phòng mới
                                 </h2>
                             </div>
-                            <div className="dropdown text-center mt-3" style={{ paddingRight: 360 }}>
-                                <button
-                                    className="btn btn-secondary dropdown-toggle"
-                                    type="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    Danh sách cơ sở
-                                </button>
+                            <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
+                                <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
+                                    <select id='facilitiesType' className="form-select mt-3" aria-label="Danh sách cơ sở"
+                                            style={{marginLeft: "20rem", width: "11rem"}}
+                                    >
+                                        <option value="0">Danh sách cơ sở</option>
+                                        <option value="1">Phòng</option>
+                                        <option value="2">Căn hộ</option>
+                                        <option value="3">Biệt thự</option>
+                                    </select>
+                                </div>
                                 <ul className="dropdown-menu">
                                     <li>
                                         <a className="dropdown-item" href="#">
@@ -49,9 +75,9 @@ export class CreateFacility extends Component{
                             </div>
                             <div className="d-flex justify-content-center mt-3">
                                 <form action="">
-                                    <table className="" style={{ width: 500 }}>
+                                    <table className="" style={{width: 500}}>
                                         <tbody>
-                                        <tr style={{ height: 60 }}>
+                                        <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="">
                                                     Tên dịch vụ:{" "}
@@ -66,7 +92,7 @@ export class CreateFacility extends Component{
                                                 />
                                             </td>
                                         </tr>
-                                        <tr style={{ height: 60 }}>
+                                        <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="">
                                                     Diện tích sử dụng:{" "}
@@ -81,7 +107,7 @@ export class CreateFacility extends Component{
                                                 />
                                             </td>
                                         </tr>
-                                        <tr style={{ height: 60 }}>
+                                        <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="">
                                                     Chi phí thuê:{" "}
@@ -96,7 +122,7 @@ export class CreateFacility extends Component{
                                                 />
                                             </td>
                                         </tr>
-                                        <tr style={{ height: 60 }}>
+                                        <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="">
                                                     Số lượng người tối đa:{" "}
@@ -111,7 +137,7 @@ export class CreateFacility extends Component{
                                                 />
                                             </td>
                                         </tr>
-                                        <tr style={{ height: 60 }}>
+                                        <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="">
                                                     Kiểu thuê:{" "}
@@ -126,7 +152,7 @@ export class CreateFacility extends Component{
                                                 />
                                             </td>
                                         </tr>
-                                        <tr style={{ height: 60 }}>
+                                        <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="">
                                                     Dịch vụ miễn phí đi kèm:{" "}
@@ -141,7 +167,7 @@ export class CreateFacility extends Component{
                                                 />
                                             </td>
                                         </tr>
-                                        <tr style={{ height: 120 }}>
+                                        <tr style={{height: 120}}>
                                             <td>
                                                 <button className="btn btn-primary float-end">Xác nhận</button>
                                             </td>
@@ -165,7 +191,6 @@ export class CreateFacility extends Component{
                     <Footer/>
                 </>
             </>
-        )
-    }
-
+        </Formik>
+    )
 }

@@ -21,8 +21,7 @@ export const ListFacility = () => {
     const handleUpdate = (id) => {
         setIsShow(true)
         setIdUpdate(id);
-        const current = facilitys.find(o => o.id === id);
-        // const current = facilitys?.find(o => o.id === id);
+        const current = facilitys?.find(o => o.id === id);
         setType(current?.facilitiesType);
         setValues(current);
 
@@ -90,6 +89,7 @@ export const ListFacility = () => {
 
                     {/*thêm mới*/}
                     <div>
+                        <Link to={`/create`}>
                         <button
                             type="button"
                             className="btn btn-success"
@@ -116,6 +116,7 @@ export const ListFacility = () => {
                                 <i className="bi bi-cart4"> Thêm phòng mới</i>
                             </a>
                         </button>
+                        </Link>
                     </div>
                     <div className="row mx-0 mt-3 py-1" style={{padding: "0 100px"}}>
                         {facilitys?.map((facility, index) => {
@@ -228,150 +229,6 @@ export const ListFacility = () => {
                         })}
                     </div>
 
-                    {/*<div className="modal" id="exampleModal" tabIndex="-1" role="dialog"*/}
-                    {/*     aria-labelledby="exampleModalLabel" aria-hidden="true"*/}
-                    {/*     style={isShow ? {display: 'block'} : {}}>*/}
-                    {/*    <div className="modal-dialog" role="document">*/}
-                    {/*        <div className="modal-content">*/}
-                    {/*            <select value={type} className="form-select mt-3" aria-label="Danh sách cơ sở"*/}
-                    {/*                    style={{marginLeft: "20rem"}}*/}
-                    {/*                    onChange={(e) => {*/}
-                    {/*                        setType(e.target.value)*/}
-                    {/*                        setValues(prev => ({*/}
-                    {/*                            ...prev,*/}
-                    {/*                            facilitiesType: e.target.value*/}
-                    {/*                        }))*/}
-                    {/*                    }}*/}
-                    {/*            >*/}
-                    {/*                <option value="0">Danh sách cơ sở</option>*/}
-                    {/*                <option value="1">Phòng</option>*/}
-                    {/*                <option value="2">Căn hộ</option>*/}
-                    {/*                <option value="3">Biệt thự</option>*/}
-                    {/*            </select>*/}
-
-                    {/*            <table className="" style={{width: 500}}>*/}
-                    {/*                <input type="hidden" id=""/>*/}
-                    {/*                <tbody>*/}
-                    {/*                <tr style={{height: 60}}>*/}
-                    {/*                    <th>*/}
-                    {/*                        <label className="fs-5" htmlFor="">*/}
-                    {/*                            Tên dịch vụ:{" "}*/}
-                    {/*                        </label>*/}
-                    {/*                    </th>*/}
-                    {/*                    <td>*/}
-                    {/*                        <input*/}
-                    {/*                            type="text"*/}
-                    {/*                            className="form-control "*/}
-                    {/*                            name=""*/}
-                    {/*                            defaultValue={dataUpdate?.name}*/}
-                    {/*                            onChange={(e) => {*/}
-                    {/*                                onChange(e, 'name')*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr style={{height: 60}}>*/}
-                    {/*                    <th>*/}
-                    {/*                        <label className="fs-5" htmlFor="">*/}
-                    {/*                            Diện tích sử dụng:{" "}*/}
-                    {/*                        </label>*/}
-                    {/*                    </th>*/}
-                    {/*                    <td>*/}
-                    {/*                        <input*/}
-                    {/*                            type="text"*/}
-                    {/*                            className="form-control"*/}
-                    {/*                            name=""*/}
-                    {/*                            defaultValue={dataUpdate?.area}*/}
-                    {/*                            onChange={(e) => {*/}
-                    {/*                                onChange(e, 'area')*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr style={{height: 60}}>*/}
-                    {/*                    <th>*/}
-                    {/*                        <label className="fs-5" htmlFor="">*/}
-                    {/*                            Chi phí thuê:{" "}*/}
-                    {/*                        </label>*/}
-                    {/*                    </th>*/}
-                    {/*                    <td>*/}
-                    {/*                        <input*/}
-                    {/*                            type="text"*/}
-                    {/*                            className="form-control"*/}
-                    {/*                            name=""*/}
-                    {/*                            defaultValue={dataUpdate?.price}*/}
-                    {/*                            onChange={(e) => {*/}
-                    {/*                                onChange(e, 'price')*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr style={{height: 60}}>*/}
-                    {/*                    <th>*/}
-                    {/*                        <label className="fs-5" htmlFor="">*/}
-                    {/*                            Số lượng người tối đa:{" "}*/}
-                    {/*                        </label>*/}
-                    {/*                    </th>*/}
-                    {/*                    <td>*/}
-                    {/*                        <input*/}
-                    {/*                            type="text"*/}
-                    {/*                            className="form-control"*/}
-                    {/*                            name=""*/}
-                    {/*                            defaultValue={dataUpdate?.people}*/}
-                    {/*                            onChange={(e) => {*/}
-                    {/*                                onChange(e, 'people')*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr style={{height: 60}}>*/}
-                    {/*                    <th>*/}
-                    {/*                        <label className="fs-5" htmlFor="">*/}
-                    {/*                            Kiểu thuê:{" "}*/}
-                    {/*                        </label>*/}
-                    {/*                    </th>*/}
-                    {/*                    <td>*/}
-                    {/*                        <input*/}
-                    {/*                            type="text"*/}
-                    {/*                            className="form-control "*/}
-                    {/*                            name=""*/}
-                    {/*                            defaultValue={dataUpdate?.rentType}*/}
-                    {/*                            onChange={(e) => {*/}
-                    {/*                                onChange(e, 'rentType')*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr style={{height: 60}}>*/}
-                    {/*                    <th>*/}
-                    {/*                        <label className="fs-5" htmlFor="">*/}
-                    {/*                            Dịch vụ miễn phí đi kèm:{" "}*/}
-                    {/*                        </label>*/}
-                    {/*                    </th>*/}
-                    {/*                    <td>*/}
-                    {/*                        <input*/}
-                    {/*                            type="text"*/}
-                    {/*                            className="form-control "*/}
-                    {/*                            name=""*/}
-                    {/*                            defaultValue={dataUpdate?.serviceFree}*/}
-                    {/*                            onChange={(e) => {*/}
-                    {/*                                onChange(e, 'serviceFree')*/}
-                    {/*                            }}*/}
-                    {/*                        />*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                </tbody>*/}
-                    {/*            </table>*/}
-                    {/*            <div className="modal-footer">*/}
-                    {/*                <button type="button" onClick={() => setIsShow(false)} className="btn btn-secondary"*/}
-                    {/*                        data-dismiss="modal">Close*/}
-                    {/*                </button>*/}
-                    {/*                <button type="button" onClick={onUpdate} className="btn btn-primary">Save changes*/}
-                    {/*                </button>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                     {/*Phân trang*/}
                     <nav
                         className="d-flex justify-content-center"

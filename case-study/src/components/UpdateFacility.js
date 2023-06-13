@@ -72,7 +72,7 @@ export const UpdateFacility = () => {
             <>
                 <div
                     className="row mx-0"
-                    style={{marginTop: 96, backgroundColor: "rgb(232, 235, 219)"}}
+                    style={{marginTop: 96, backgroundColor: "rgb(245,228,248)"}}
                 >
                     <div className="col-7">
                         <div>
