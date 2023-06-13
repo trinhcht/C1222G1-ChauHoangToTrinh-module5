@@ -232,6 +232,61 @@
         "2",
         "3"
       ]
+    },
+    {
+      "id": "14",
+      "name": "Phòng toooo",
+      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
+      "facilitiesType": 1,
+      "area": "100",
+      "price": 150000,
+      "people": "4",
+      "rentType": "Ngày",
+      "serviceFree": "Thức ăn"
+    },
+    {
+      "id": "15",
+      "name": "Phòng toooogdgf",
+      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
+      "facilitiesType": "",
+      "area": "100",
+      "price": 150000,
+      "people": "4",
+      "rentType": "Ngày",
+      "serviceFree": "Thức ăn"
+    },
+    {
+      "id": "16",
+      "name": "Phòng tooooxxxxx",
+      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
+      "facilitiesType": "",
+      "area": "100",
+      "price": 150000,
+      "people": "4",
+      "rentType": "Ngày",
+      "serviceFree": "Thức ăn"
+    },
+    {
+      "id": "17",
+      "name": "Phòng toooo1",
+      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
+      "facilitiesType": "",
+      "area": "100",
+      "price": 150000,
+      "people": "4",
+      "rentType": "Ngày",
+      "serviceFree": "Thức ăn"
+    },
+    {
+      "id": "18",
+      "name": "Phòng toooo12",
+      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
+      "facilitiesType": "1",
+      "area": "100",
+      "price": 150000,
+      "people": "4",
+      "rentType": "Ngày",
+      "serviceFree": "Thức ăn"
     }
   ],
   "facilityService": [

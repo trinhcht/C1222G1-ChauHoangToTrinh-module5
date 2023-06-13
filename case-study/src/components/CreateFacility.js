@@ -1,18 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import '../index.css'
 import {Link, useNavigate} from "react-router-dom";
-import {Formik} from "formik";
+import {Field, Form, Formik} from "formik";
 import * as FacilityService from "../service/FacilityService";
+import {findAll, getFacilitiesType} from "../service/FacilityService";
 
 
 export function CreateFacility() {
     const navigate = useNavigate();
-    const [isShow, setIsShow] = useState(false)
+
     return (
         <Formik
-            initiaValues={{
+            initialValues = {{
+                id: "",
                 name: "",
                 img: "",
                 facilitiesType: "",
@@ -22,8 +24,10 @@ export function CreateFacility() {
                 rentType: "",
                 serviceFree: "",
             }}
-            onSubmit={(values,{setSubmitting}) => {
-                const create = async () => {
+            onSubmit={(values, {setSubmitting}) => {
+                console.log({ values });
+                // actions.setSubmitting(false);
+                const create = async () =>{
                     await FacilityService.save(values)
                     setSubmitting(false)
                     navigate('/')
@@ -31,6 +35,8 @@ export function CreateFacility() {
                 create();
             }}
         >
+
+
             <>
                 <>
                     <Header/>
@@ -46,181 +52,186 @@ export function CreateFacility() {
                                     Thêm phòng mới
                                 </h2>
                             </div>
-                            <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
+
+                            <Form>
                                 <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
-                                    <tr>
-                                        <th></th>
-                                        <td>
-                                            <select id='facilitiesType' name="facilitiesType" className="form-select mt-3"
-                                                    aria-label="Danh sách cơ sở"
-                                                    style={{marginLeft: "27rem", width: "13rem"}}
-                                            >
-                                                <option value="0">Danh sách cơ sở</option>
-                                                <option value="1">Phòng</option>
-                                                <option value="2">Căn hộ</option>
-                                                <option value="3">Biệt thự</option>
-                                            </select>
-                                        </td>
-                                    </tr>
+                                    <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
+                                        <tr>
+                                            <th></th>
+                                            <td>
+                                                <Field as={"select"} id='facilitiesType' name="facilitiesType" className="form-select mt-3"
+                                                       aria-label="Danh sách cơ sở"
+                                                       style={{marginLeft: "27rem", width: "13rem"}}>
+                                                    <option value="0">Danh sách cơ sở</option>
+                                                    <option value="1">Phòng</option>
+                                                    <option value="2">Căn hộ</option>
+                                                    <option value="3">Biệt thự</option></Field>
+                                                {/*<select id='facilitiesType' name="facilitiesType" className="form-select mt-3"*/}
+                                                {/*        aria-label="Danh sách cơ sở"*/}
+                                                {/*        style={{marginLeft: "27rem", width: "13rem"}}*/}
+                                                {/*>*/}
 
+                                                {/*</select>*/}
+                                            </td>
+                                        </tr>
+
+                                    </div>
                                 </div>
-                                <ul className="dropdown-menu">
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Phòng
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Biệt thự
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            Căn hộ
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="d-flex justify-content-center mt-3">
-                                <form action="">
-                                    <table className="" style={{width: 500}}>
-                                        <tbody>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Tên dịch vụ:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    className="form-control "
-                                                    name="name"
-                                                    id="name"
-                                                    placeholder="Nhập tên dịch vụ"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Hình ảnh:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    className="form-control "
-                                                    name="img"
-                                                    id="img"
-                                                    placeholder="Thêm ảnh"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Diện tích sử dụng:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="area"
-                                                    id="area"
-                                                    placeholder="Nhập diện tích sử dụng"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Chi phí thuê:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="number"
-                                                    className="form-control"
-                                                    name="price"
-                                                    id="price"
-                                                    placeholder="Nhập chi phí thuê"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Số lượng người tối đa:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    name="people"
-                                                    id="people"
-                                                    placeholder="Nhập số lượng người tối đa"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Kiểu thuê:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    className="form-control "
-                                                    name="rentType"
-                                                    id="rentType"
-                                                    placeholder="Ngày/Tháng/Năm"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="">
-                                                    Dịch vụ miễn phí đi kèm:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    className="form-control "
-                                                    name="serviceFree"
-                                                    id="serviceFree"
-                                                    placeholder="Massage/Thuê xe/Thức ăn/Karaoke"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr style={{height: 120}}>
-                                            <td>
-                                                <div style={{marginLeft: "7rem"}}>
-                                                    <Link to={`/`}>
-                                                        <button type="button" onClick={() => setIsShow(false)}
-                                                                className="btn btn-secondary"
-                                                                className="btn btn-dark me-4"
-                                                                data-dismiss="modal">Đóng
-                                                        </button>
-                                                    </Link>
+                                <div className="d-flex justify-content-center mt-3">
+                                        <table className="" style={{width: 500}}>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="id">
+                                                        ID:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control "
+                                                        name="id"
+                                                        id="id"
+                                                        placeholder="Nhập id"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="name">
+                                                        Tên dịch vụ:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control "
+                                                        name="name"
+                                                        id="name"
+                                                        placeholder="Nhập tên dịch vụ"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="img">
+                                                        Hình ảnh:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control "
+                                                        name="img"
+                                                        id="img"
+                                                        placeholder="Thêm ảnh"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="area">
+                                                        Diện tích sử dụng:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        name="area"
+                                                        id="area"
+                                                        placeholder="Nhập diện tích sử dụng"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="price">
+                                                        Chi phí thuê:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="number"
+                                                        className="form-control"
+                                                        name="price"
+                                                        id="price"
+                                                        placeholder="Nhập chi phí thuê"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="people">
+                                                        Số lượng người tối đa:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        name="people"
+                                                        id="people"
+                                                        placeholder="Nhập số lượng người tối đa"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="rentType">
+                                                        Kiểu thuê:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control "
+                                                        name="rentType"
+                                                        id="rentType"
+                                                        placeholder="Ngày/Tháng/Năm"
+                                                    />
 
-                                                    <button
-                                                        type="button" className="btn btn-primary"
-                                                    >
-                                                        Xác nhận
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </form>
-                            </div>
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 60}}>
+                                                <th>
+                                                    <label className="fs-5" htmlFor="serviceFree">
+                                                        Dịch vụ miễn phí đi kèm:{" "}
+                                                    </label>
+                                                </th>
+                                                <td>
+                                                    <Field
+                                                        type="text"
+                                                        className="form-control "
+                                                        name="serviceFree"
+                                                        id="serviceFree"
+                                                        placeholder="Massage/Thuê xe/Thức ăn/Karaoke"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr style={{height: 120}}>
+                                                <td>
+                                                    <div style={{marginLeft: "7rem"}}>
+                                                        <Link to={`/`}>
+                                                            <button type="button"
+                                                                    className="btn btn-secondary"
+                                                                    className="btn btn-dark me-4"
+                                                                    data-dismiss="modal">Đóng
+                                                            </button>
+                                                        </Link>
+
+                                                        <button
+                                                            type="submit" className="btn btn-primary"
+                                                        >
+                                                            Xác nhận
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                </div>
+                            </Form>
+
                         </div>
                         <div className="col-5 p-0">
                             <img
@@ -236,6 +247,30 @@ export function CreateFacility() {
                     <Footer/>
                 </>
             </>
+
         </Formik>
+        // <Formik
+        //     initiaValues={{
+        //         name: "",
+        //         img: "",
+        //         facilitiesType: "",
+        //         area: "",
+        //         price: "",
+        //         people: "",
+        //         rentType: "",
+        //         serviceFree: "",
+        //     }}
+        //     onSubmit={(values,{setSubmitting}) => {
+        //         console.log("123", values)
+        //         // const create = async () => {
+        //         //     await FacilityService.save(values)
+        //         //     setSubmitting(false)
+        //         //     navigate('/')
+        //         // }
+        //         // create();
+        //     }}
+        // >
+
+        // </Formik>
     )
 }
