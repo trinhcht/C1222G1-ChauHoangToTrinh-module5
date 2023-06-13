@@ -7,7 +7,7 @@ import {findAll, getFacilitiesType, remove} from "../service/FacilityService";
 
 export const ListFacility = () => {
     const navigate = useNavigate();
-    const [facilitys, setFacilitys] = useState(dbData.facilitiesList)
+    const [facilitys, setFacilitys] = useState()
     const [isShow, setIsShow] = useState(false)
     const [values, setValues] = useState({})
     const [idUpdate, setIdUpdate] = useState();
@@ -16,13 +16,13 @@ export const ListFacility = () => {
     const hanleNavigation = (idToUpdate) => {
         navigate(`/update/${idToUpdate}`);
     }
-    // facilitiesType
-    console.log({facilitys: facilitys.length})
+
 
     const handleUpdate = (id) => {
         setIsShow(true)
         setIdUpdate(id);
-        const current = facilitys.find(o => o.id == id);
+        const current = facilitys.find(o => o.id === id);
+        // const current = facilitys?.find(o => o.id === id);
         setType(current?.facilitiesType);
         setValues(current);
 
@@ -36,7 +36,7 @@ export const ListFacility = () => {
         setIsShow(false)
     }
 
-    const dataUpdate = facilitys.find(o => o.id === idUpdate);
+    const dataUpdate = facilitys?.find(o => o.id === idUpdate);
 
     const getListFacilities = async () => {
         const listFacilities = await findAll();
@@ -118,7 +118,8 @@ export const ListFacility = () => {
                         </button>
                     </div>
                     <div className="row mx-0 mt-3 py-1" style={{padding: "0 100px"}}>
-                        {facilitys.map((facility, index) => {
+                        {facilitys?.map((facility, index) => {
+                            {console.log("data", facility)}
                             return(
                                 <div className="col-4 d-flex justify-content-center" style={{marginBottom: "2rem"}}>
                                     <div className="card" style={{width: 380}}>
@@ -129,12 +130,11 @@ export const ListFacility = () => {
                                             style={{height: "15rem"}}
                                         />
                                         <div className="card-body">
-                                            <h5 className="card-title">{facility.name}</h5>
+                                            <h5 className="card-title">{facilitys.name}</h5>
                                             <p className="card-text">Diện tích phòng: {facility.area} </p>
                                             <p className="card-text">Loại
                                                 Phòng: {dbData.facilitiesType.find(o => o.id == facility.facilitiesType)?.name} </p>
-                                            {console.log("data", dbData.facilitiesType.find(o => o.id == facility.facilitiesType))}
-                                            <p>Dịch vụ đi kèm: {facility.serviceFree}</p>
+                                            <p>Dịch vụ đi kèm: {facilitys.serviceFree}</p>
                                             {/*button edit, delete*/}
                                             <Link to={`/update/${facility.id}`}>
                                                 <button

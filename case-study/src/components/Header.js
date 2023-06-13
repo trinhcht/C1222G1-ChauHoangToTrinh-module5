@@ -1,7 +1,8 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import '../index.css'
-export class Header extends Component{
-    render() {
+import {Link, useNavigate} from "react-router-dom";
+export const Header = () =>{
+        const navigate = useNavigate();
         return (
             <>
                 <header>
@@ -16,12 +17,9 @@ export class Header extends Component{
                             </a>
                             <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                                 <li>
-                                    <a
-                                        href="#"
-                                        className="nav-link fs-5 px-4 fw-bold text-dark text-hover active"
-                                    >
-                                        Trang chủ
-                                    </a>
+                                    <Link to={`/`} className="nav-link fs-5 px-4 fw-bold text-dark text-hover">
+                                        Trang chủ
+                                    </Link>
                                 </li>
                                 <li>
                                     <a
@@ -32,12 +30,9 @@ export class Header extends Component{
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
-                                        className="nav-link fs-5 px-4 fw-bold text-dark text-hover"
-                                    >
-                                        Khách sạn
-                                    </a>
+                                    <Link to={`/customer`} className="nav-link fs-5 px-4 fw-bold text-dark text-hover">
+                                        Khách hàng
+                                    </Link>
                                 </li>
                                 <li>
                                     <a
@@ -97,6 +92,5 @@ export class Header extends Component{
                 </header>
             </>
         );
-    }
 
 }

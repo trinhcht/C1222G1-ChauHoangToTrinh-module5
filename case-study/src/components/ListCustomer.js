@@ -9,7 +9,6 @@ export const ListCustomer = () => {
     const navigate = useNavigate();
     const [customer, setCustomer] = useState(dbData.customerList)
 
-    console.log("cus",{customer: customer.length})
 
     const getListCustomer = async () => {
         const listCustomer = await findAllCustomer();
