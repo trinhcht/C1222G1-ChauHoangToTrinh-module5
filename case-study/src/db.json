@@ -24,14 +24,14 @@
   "customerList": [
     {
       "id": 1,
-      "name": "Nguyễn Văn A",
-      "dateOfBirth": "13-01-2000",
-      "gender": "Nam",
-      "citizenIdentification": "201322211",
-      "phone": "0909999999",
-      "email": "nguyenvana@gmail.com",
-      "customerType": 1,
-      "address": "123 Hoàng Văn Thụ, Đà Nẵng"
+      "name": "Nguyễn Văn AA",
+      "dateOfBirth": "13-01-1999",
+      "gender": "Nữ",
+      "citizenIdentification": "201322266",
+      "phone": "0909999343",
+      "email": "nguyenvanaa@gmail.com",
+      "customerType": 2,
+      "address": "1 Hoàng Văn Thụ, Đà Nẵng"
     },
     {
       "id": 2,
@@ -54,6 +54,50 @@
       "email": "nguyenc@gmail.com",
       "customerType": 3,
       "address": "123 Nguyễn Hoàng, Đà Nẵng"
+    },
+    {
+      "id": "4",
+      "name": "Nguyễn Thị H",
+      "dateOfBirth": "11-09-2000",
+      "gender": "Nữ",
+      "citizenIdentification": 9243649492,
+      "phone": "0344648294",
+      "email": "nguyenthih@gmail.com",
+      "customerType": 1,
+      "address": "12 Trần Hưng Đạo, Đà Nẵng"
+    },
+    {
+      "id": "5",
+      "name": "Trần Văn K",
+      "dateOfBirth": "11-09-2000",
+      "gender": "Nam",
+      "citizenIdentification": 345435334445,
+      "phone": "0363434535",
+      "email": "tranvank@gmail.com",
+      "customerType": "1",
+      "address": "12 Trần Hưng Đạo, Đà Nẵng"
+    },
+    {
+      "id": "6",
+      "name": "sdsfbj",
+      "dateOfBirth": "11-09-2000",
+      "gender": "Nam",
+      "citizenIdentification": 4548264964,
+      "phone": "0333324133",
+      "email": "fdfsd@gmail.com",
+      "customerType": "1",
+      "address": "12 Trần Hưng Đạo, Đà Nẵng"
+    },
+    {
+      "id": "8",
+      "name": "Nguyễn Thị H",
+      "dateOfBirth": "11-09-2000",
+      "gender": "Nữ",
+      "citizenIdentification": 555343,
+      "phone": "0344648294",
+      "email": "nguyenthih@gmail.com",
+      "customerType": "1",
+      "address": "12 Trần Hưng Đạo, Đà Nẵng"
     }
   ],
   "facilitiesList": [

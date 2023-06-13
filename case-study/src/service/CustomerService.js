@@ -15,3 +15,21 @@ export const save = async (customer) => {
         console.log(error);
     }
 }
+
+export const getCustomerType = async() =>{
+    try {
+        return (await axios.get('http://localhost:8080/customerType')).data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const update = async(customer)=>{
+    console.log("customerupdate", customer)
+    try {
+        const res = await axios.put(`http://localhost:8080/customerList/${customer.id}`,{ ...customer })
+        console.log("res", res);
+    } catch (error) {
+        console.log("errUpdate", error)
+    }
+}

@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import '../index.css'
 import {Link, useNavigate} from "react-router-dom";
 import {Field, Form, Formik} from "formik";
 import * as FacilityService from "../service/FacilityService";
-import {findAll, getFacilitiesType} from "../service/FacilityService";
 
 
 export function CreateFacility() {
@@ -26,7 +25,6 @@ export function CreateFacility() {
             }}
             onSubmit={(values, {setSubmitting}) => {
                 console.log({ values });
-                // actions.setSubmitting(false);
                 const create = async () =>{
                     await FacilityService.save(values)
                     setSubmitting(false)
@@ -65,13 +63,8 @@ export function CreateFacility() {
                                                     <option value="0">Danh sách cơ sở</option>
                                                     <option value="1">Phòng</option>
                                                     <option value="2">Căn hộ</option>
-                                                    <option value="3">Biệt thự</option></Field>
-                                                {/*<select id='facilitiesType' name="facilitiesType" className="form-select mt-3"*/}
-                                                {/*        aria-label="Danh sách cơ sở"*/}
-                                                {/*        style={{marginLeft: "27rem", width: "13rem"}}*/}
-                                                {/*>*/}
-
-                                                {/*</select>*/}
+                                                    <option value="3">Biệt thự</option>
+                                                </Field>
                                             </td>
                                         </tr>
 
@@ -247,30 +240,6 @@ export function CreateFacility() {
                     <Footer/>
                 </>
             </>
-
         </Formik>
-        // <Formik
-        //     initiaValues={{
-        //         name: "",
-        //         img: "",
-        //         facilitiesType: "",
-        //         area: "",
-        //         price: "",
-        //         people: "",
-        //         rentType: "",
-        //         serviceFree: "",
-        //     }}
-        //     onSubmit={(values,{setSubmitting}) => {
-        //         console.log("123", values)
-        //         // const create = async () => {
-        //         //     await FacilityService.save(values)
-        //         //     setSubmitting(false)
-        //         //     navigate('/')
-        //         // }
-        //         // create();
-        //     }}
-        // >
-
-        // </Formik>
     )
 }
