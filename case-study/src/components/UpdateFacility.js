@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
-import {useNavigate, useParams} from "react-router-dom";
-import {facilityData} from "../data/FacilityData";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {findAll, getFacilitiesType, update} from "../service/FacilityService";
 import dbData from "../db.json"
 
@@ -27,7 +26,7 @@ export const UpdateFacility = () => {
         await update({
             ...data,
             ...values,
-            facilitiesType: +values.facilitiesType
+            facilitiesType: +values.facilitiesType,
         });
         await getListFacilities();
         navigate('/');
@@ -53,6 +52,7 @@ export const UpdateFacility = () => {
             [name]: e.target.value
         }))
     }
+
     const dataUpdate = facilitys.find(o => o.id === idUpdate);
 
     useEffect(() => {
@@ -79,21 +79,27 @@ export const UpdateFacility = () => {
                             <h2 className="text-center fw-bold mt-3">Chỉnh sửa thông tin phòng</h2>
                         </div>
                         <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
-                            <select value={type} className="form-select mt-3" aria-label="Danh sách cơ sở"
-                                    style={{marginLeft: "20rem"}}
-                                    onChange={(e) => {
-                                        setType(e.target.value)
-                                        setValues(prev => ({
-                                            ...prev,
-                                            facilitiesType: e.target.value
-                                        }))
-                                    }}
-                            >
-                                <option value="0">Danh sách cơ sở</option>
-                                <option value="1">Phòng</option>
-                                <option value="2">Căn hộ</option>
-                                <option value="3">Biệt thự</option>
-                            </select>
+                            <tr style={{height: 60}}>
+                                <th></th>
+                                <td>
+                                    <select value={type} className="form-select mt-3" aria-label="Danh sách cơ sở"
+                                            style={{marginLeft: "27rem", width: "13rem"}}
+                                            onChange={(e) => {
+                                                setType(e.target.value)
+                                                setValues(prev => ({
+                                                    ...prev,
+                                                    facilitiesType: e.target.value
+                                                }))
+                                            }}
+                                    >
+                                        <option value="0">Danh sách cơ sở</option>
+                                        <option value="1">Phòng</option>
+                                        <option value="2">Căn hộ</option>
+                                        <option value="3">Biệt thự</option>
+                                    </select>
+                                </td>
+                            </tr>
+
                         </div>
                         <div className="d-flex justify-content-center mt-3">
                             <form action="">
@@ -114,6 +120,24 @@ export const UpdateFacility = () => {
                                                 defaultValue={data?.name}
                                                 onChange={(e) => {
                                                     onChange(e, 'name')
+                                                }}
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr style={{height: 60}}>
+                                        <th>
+                                            <label className="fs-5" htmlFor="">
+                                                Ảnh:{" "}
+                                            </label>
+                                        </th>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                className="form-control "
+                                                name=""
+                                                defaultValue={data?.img}
+                                                onChange={(e) => {
+                                                    onChange(e, 'img')
                                                 }}
                                             />
                                         </td>
@@ -162,7 +186,7 @@ export const UpdateFacility = () => {
                                         </th>
                                         <td>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 className="form-control"
                                                 name=""
                                                 defaultValue={data?.people}
@@ -188,6 +212,7 @@ export const UpdateFacility = () => {
                                                     onChange(e, 'rentType')
                                                 }}
                                             />
+
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -210,15 +235,20 @@ export const UpdateFacility = () => {
                                     </tr>
                                     <tr style={{height: 120}}>
                                         <td>
-                                            <button type="button" onClick={() => setIsShow(false)}
-                                                    className="btn btn-secondary"
-                                                    data-dismiss="modal">Close
-                                            </button>
-                                            <button
-                                                type="button" onClick={onUpdate} className="btn btn-primary"
-                                            >
-                                                Xác nhận
-                                            </button>
+                                            <div style={{marginLeft: "7rem"}}>
+                                                <Link to={`/`}>
+                                                    <button type="button" onClick={() => setIsShow(false)}
+                                                            className="btn btn-secondary" className="btn btn-dark me-4"
+                                                            data-dismiss="modal">Đóng
+                                                    </button>
+                                                </Link>
+
+                                                <button
+                                                    type="button" onClick={onUpdate} className="btn btn-primary"
+                                                >
+                                                    Xác nhận
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>

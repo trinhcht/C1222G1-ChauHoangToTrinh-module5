@@ -22,12 +22,9 @@ export const Header = () =>{
                                     </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
-                                        className="nav-link fs-5 px-4 fw-bold text-dark text-hover"
-                                    >
-                                        Loại phòng
-                                    </a>
+                                    <Link to={`/contract`} className="nav-link fs-5 px-4 fw-bold text-dark text-hover">
+                                        Hợp đồng
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link to={`/customer`} className="nav-link fs-5 px-4 fw-bold text-dark text-hover">

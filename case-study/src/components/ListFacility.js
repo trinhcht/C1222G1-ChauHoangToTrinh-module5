@@ -131,13 +131,13 @@ export const ListFacility = () => {
                                             style={{height: "15rem"}}
                                         />
                                         <div className="card-body">
-                                            <h5 className="card-title">{facilitys.name}</h5>
+                                            <h5 className="card-title">{facility.name}</h5>
                                             <p className="card-text">Diện tích phòng: {facility.area} </p>
                                             <p className="card-text">Loại
                                                 Phòng: {dbData.facilitiesType.find(o => o.id == facility.facilitiesType)?.name} </p>
-                                            <p>Dịch vụ đi kèm: {facilitys.serviceFree}</p>
+                                            <p>Dịch vụ đi kèm: {facility.serviceFree}</p>
                                             {/*button edit, delete*/}
-                                            <Link to={`/update/${facility.id}`}>
+                                            <Link to={`/update/${facility.id}`} style={{marginRight: "1rem"}}>
                                                 <button
                                                     type="button"
                                                     className="btn btn-primary"
@@ -188,7 +188,7 @@ export const ListFacility = () => {
                                             {/* Modal xóa */}
                                             <div
                                                 className="modal fade"
-                                                id="exampleModal"
+                                                id="exampleModal1"
                                                 tabIndex={-1}
                                                 aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true"

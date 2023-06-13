@@ -10,8 +10,6 @@ import {customerData, customerType} from "../data/CustomerData";
 export function CreateCustomer() {
     const navigate = useNavigate();
 
-
-
     return (
         <>
             <>

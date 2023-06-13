@@ -62,7 +62,7 @@
       "name": "PHÒNG SUITE HƯỚNG BIỂN 55555",
       "area": "85.8m2",
       "price": "2000",
-      "rentType": 1,
+      "rentType": "Ngày",
       "img": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-768x497.jpg",
       "people": "4",
       "facilitiesType": 1,
@@ -73,7 +73,9 @@
       "serviceFree": "massage",
       "facilityService": [
         "4"
-      ]
+      ],
+      "typeRent": "1",
+      "facilityRentType": null
     },
     {
       "id": 2,
@@ -251,7 +253,7 @@
     },
     {
       "id": 5,
-      "name": "Thuê xe di chuyển tham quan resort"
+      "name": "Thuê xe"
     }
   ],
   "facilityRentType": [

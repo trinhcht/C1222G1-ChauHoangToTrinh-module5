@@ -5,6 +5,7 @@ import {NavLink, Route, Routes, createBrowserRouter, RouterProvider} from "react
 import {UpdateFacility} from "./components/UpdateFacility";
 import {CreateFacility} from "./components/CreateFacility";
 import {ListCustomer} from "./components/ListCustomer";
+import {ListContract} from "./components/ListContract";
 
 const router = createBrowserRouter([
     {
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
     {
         path: "/customer",
         element: <ListCustomer />,
-    }
+    },
+    {
+        path: "/contract",
+        element: <ListContract />,
+    },
 ]);
 
 function App() {

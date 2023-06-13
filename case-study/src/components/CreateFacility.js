@@ -1,33 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import '../index.css'
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Formik} from "formik";
 import * as FacilityService from "../service/FacilityService";
 
 
 export function CreateFacility() {
     const navigate = useNavigate();
+    const [isShow, setIsShow] = useState(false)
     return (
         <Formik
-            initiaValues ={{
-            img: "",
-            facilitiesType: "",
-            name: "",
-            area: "",
-            price: "",
-            people: "",
-            rentType: "",
-            serviceFree: "",
-        }}
-        onSubmit={(values) =>{
-            const create = async ()=>{
-                await FacilityService.save(values)
-                navigate('/')
-            }
-            create();
-        }}
+            initiaValues={{
+                name: "",
+                img: "",
+                facilitiesType: "",
+                area: "",
+                price: "",
+                people: "",
+                rentType: "",
+                serviceFree: "",
+            }}
+            onSubmit={(values,{setSubmitting}) => {
+                const create = async () => {
+                    await FacilityService.save(values)
+                    setSubmitting(false)
+                    navigate('/')
+                }
+                create();
+            }}
         >
             <>
                 <>
@@ -46,14 +48,21 @@ export function CreateFacility() {
                             </div>
                             <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
                                 <div className="dropdown text-center mt-3" style={{paddingRight: 360}}>
-                                    <select id='facilitiesType' className="form-select mt-3" aria-label="Danh sách cơ sở"
-                                            style={{marginLeft: "20rem", width: "11rem"}}
-                                    >
-                                        <option value="0">Danh sách cơ sở</option>
-                                        <option value="1">Phòng</option>
-                                        <option value="2">Căn hộ</option>
-                                        <option value="3">Biệt thự</option>
-                                    </select>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <select id='facilitiesType' name="facilitiesType" className="form-select mt-3"
+                                                    aria-label="Danh sách cơ sở"
+                                                    style={{marginLeft: "27rem", width: "13rem"}}
+                                            >
+                                                <option value="0">Danh sách cơ sở</option>
+                                                <option value="1">Phòng</option>
+                                                <option value="2">Căn hộ</option>
+                                                <option value="3">Biệt thự</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
                                 </div>
                                 <ul className="dropdown-menu">
                                     <li>
@@ -87,8 +96,25 @@ export function CreateFacility() {
                                                 <input
                                                     type="text"
                                                     className="form-control "
-                                                    name=""
+                                                    name="name"
+                                                    id="name"
                                                     placeholder="Nhập tên dịch vụ"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr style={{height: 60}}>
+                                            <th>
+                                                <label className="fs-5" htmlFor="">
+                                                    Hình ảnh:{" "}
+                                                </label>
+                                            </th>
+                                            <td>
+                                                <input
+                                                    type="text"
+                                                    className="form-control "
+                                                    name="img"
+                                                    id="img"
+                                                    placeholder="Thêm ảnh"
                                                 />
                                             </td>
                                         </tr>
@@ -102,7 +128,8 @@ export function CreateFacility() {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    name=""
+                                                    name="area"
+                                                    id="area"
                                                     placeholder="Nhập diện tích sử dụng"
                                                 />
                                             </td>
@@ -117,7 +144,8 @@ export function CreateFacility() {
                                                 <input
                                                     type="number"
                                                     className="form-control"
-                                                    name=""
+                                                    name="price"
+                                                    id="price"
                                                     placeholder="Nhập chi phí thuê"
                                                 />
                                             </td>
@@ -132,7 +160,8 @@ export function CreateFacility() {
                                                 <input
                                                     type="text"
                                                     className="form-control"
-                                                    name=""
+                                                    name="people"
+                                                    id="people"
                                                     placeholder="Nhập số lượng người tối đa"
                                                 />
                                             </td>
@@ -147,8 +176,9 @@ export function CreateFacility() {
                                                 <input
                                                     type="text"
                                                     className="form-control "
-                                                    name=""
-                                                    placeholder="Nhập kiểu thuê"
+                                                    name="rentType"
+                                                    id="rentType"
+                                                    placeholder="Ngày/Tháng/Năm"
                                                 />
                                             </td>
                                         </tr>
@@ -162,14 +192,29 @@ export function CreateFacility() {
                                                 <input
                                                     type="text"
                                                     className="form-control "
-                                                    name=""
-                                                    placeholder="Nhập dịch vụ miễn phí đi kèm"
+                                                    name="serviceFree"
+                                                    id="serviceFree"
+                                                    placeholder="Massage/Thuê xe/Thức ăn/Karaoke"
                                                 />
                                             </td>
                                         </tr>
                                         <tr style={{height: 120}}>
                                             <td>
-                                                <button className="btn btn-primary float-end">Xác nhận</button>
+                                                <div style={{marginLeft: "7rem"}}>
+                                                    <Link to={`/`}>
+                                                        <button type="button" onClick={() => setIsShow(false)}
+                                                                className="btn btn-secondary"
+                                                                className="btn btn-dark me-4"
+                                                                data-dismiss="modal">Đóng
+                                                        </button>
+                                                    </Link>
+
+                                                    <button
+                                                        type="button" className="btn btn-primary"
+                                                    >
+                                                        Xác nhận
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                         </tbody>
