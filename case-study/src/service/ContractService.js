@@ -15,3 +15,4 @@ export const save = async (contract) => {
         console.log(error);
     }
 }
+

@@ -1,11 +1,12 @@
 import {useNavigate} from "react-router";
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as CustomerService from "../service/CustomerService"
 import React from "react";
 import '../index.css'
 import {Footer} from "./Footer";
 import {Link} from "react-router-dom";
 import {Header} from "./Header";
+import * as Yup from "yup";
 
 export function CreateCustomer() {
     const navigate = useNavigate();
@@ -22,6 +23,18 @@ export function CreateCustomer() {
                 customerType: parseInt("0"),
                 address: "",
             }}
+
+            validationSchema={Yup.object({
+                name: Yup.string().required('Không được bỏ trống'),
+                dateOfBirth: Yup.string().required('Không được bỏ trống').matches(/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/, 'Định dạng ngày tháng không hợp lệ (dd/mm/yyyy)'),
+                gender: Yup.string().required('Không được bỏ trống').matches(/^(Nam|Nữ|Khác)$/, 'Giới tính không hợp lệ (Nam|Nữ|Khác)'),
+                citizenIdentification: Yup.number().positive('Không được chứa dấu -').required('Không được bỏ trống'),
+                phone: Yup.string().matches(/^\d{10}$/, 'Số điện thoại phải có 10 chữ số').required('Không được bỏ trống'),
+                email: Yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,'Email phải có định dạng xxxx@yyyy.com').required('Không được bỏ trống'),
+                customerType: Yup.string().notOneOf(['0'], 'Không được bỏ trống').required('Không được bỏ trống'),
+                address: Yup.string().required('Không được bỏ trống'),
+            })}
+
             onSubmit={(values, {setSubmitting}) => {
                 console.log({values});
                 const create = async () => {
@@ -58,23 +71,6 @@ export function CreateCustomer() {
                                 <div className="d-flex justify-content-center mt-3"
                                      style={{width: "33rem", marginLeft: "11rem"}}>
                                     <table className="" style={{width: 500}}>
-                                        {/*<tr style={{height: 60}}>*/}
-                                        {/*    <th>*/}
-                                        {/*        <label className="fs-5" htmlFor="id">*/}
-                                        {/*            ID:{" "}*/}
-                                        {/*        </label>*/}
-                                        {/*    </th>*/}
-                                        {/*    <td>*/}
-                                        {/*        <Field*/}
-                                        {/*            style={{width: "18rem"}}*/}
-                                        {/*            type="text"*/}
-                                        {/*            className="form-control "*/}
-                                        {/*            name="id"*/}
-                                        {/*            id="id"*/}
-                                        {/*            placeholder="Nhập id"*/}
-                                        {/*        />*/}
-                                        {/*    </td>*/}
-                                        {/*</tr>*/}
                                         <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="name">
@@ -90,6 +86,7 @@ export function CreateCustomer() {
                                                     id="name"
                                                     placeholder="Nhập họ và tên"
                                                 />
+                                                <ErrorMessage name='name' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -107,6 +104,7 @@ export function CreateCustomer() {
                                                     id="dateOfBirth"
                                                     placeholder="Nhập ngày sinh"
                                                 />
+                                                <ErrorMessage name='dateOfBirth' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -124,6 +122,7 @@ export function CreateCustomer() {
                                                     id="gender"
                                                     placeholder="Nam/Nữ/Khác"
                                                 />
+                                                <ErrorMessage name='gender' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -141,6 +140,7 @@ export function CreateCustomer() {
                                                     id="citizenIdentification"
                                                     placeholder="Nhập số cmnd"
                                                 />
+                                                <ErrorMessage name='citizenIdentification' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -158,6 +158,7 @@ export function CreateCustomer() {
                                                     id="phone"
                                                     placeholder="Nhập số điện thoại"
                                                 />
+                                                <ErrorMessage name='phone' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -175,7 +176,7 @@ export function CreateCustomer() {
                                                     id="email"
                                                     placeholder="Nhập email"
                                                 />
-
+                                                <ErrorMessage name='email' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -198,6 +199,7 @@ export function CreateCustomer() {
                                                     <option value="4">Silver</option>
                                                     <option value="5">Member</option>
                                                 </Field>
+                                                <ErrorMessage name='customerType' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 60}}>
@@ -214,6 +216,7 @@ export function CreateCustomer() {
                                                     id="address"
                                                     placeholder="Nhập địa chỉ"
                                                 />
+                                                <ErrorMessage name='address' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
                                         <tr style={{height: 120}}>

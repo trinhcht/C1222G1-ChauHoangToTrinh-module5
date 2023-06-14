@@ -8,6 +8,7 @@ import {ListCustomer} from "./components/ListCustomer";
 import {ListContract} from "./components/ListContract";
 import {UpdateCustomer} from "./components/UpdateCustomer";
 import {CreateCustomer} from "./components/CreateCustomer";
+import {CreateContract} from "./components/CreateContract";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
     {
         path: "/contract",
         element: <ListContract />,
+    },
+    {
+        path: "/contract/create",
+        element: <CreateContract />,
     },
 ]);
 
