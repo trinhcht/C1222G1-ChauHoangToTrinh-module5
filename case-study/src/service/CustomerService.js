@@ -33,3 +33,12 @@ export const update = async(customer)=>{
         console.log("errUpdate", error)
     }
 }
+
+export const remove = async(id) =>{
+    try {
+        const res = await axios.delete(`http://localhost:8080/customerList/${id}`)
+        return res;
+    } catch (error) {
+        console.log(error)
+    }
+}

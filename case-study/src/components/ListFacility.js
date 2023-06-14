@@ -7,6 +7,8 @@ import {findAll, getFacilitiesType, remove} from "../service/FacilityService";
 
 export const ListFacility = () => {
     const navigate = useNavigate();
+    const [idDelete, setIdDelete] = useState(null)
+    const [nameDelete, setNameDelete] = useState(null)
     const [facilitys, setFacilitys] = useState()
     const [isShow, setIsShow] = useState(false)
     const [values, setValues] = useState({})
@@ -26,17 +28,6 @@ export const ListFacility = () => {
         setValues(current);
 
     }
-
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    function openModal() {
-        setModalIsOpen(true);
-    }
-
-    function closeModal() {
-        setModalIsOpen(false);
-    }
-
 
     const onUpdate = () => {
         const newValues = [...facilitys];
@@ -58,6 +49,11 @@ export const ListFacility = () => {
         if(res.code === 200){
             await getListFacilities();
         }
+    }
+
+    const getInfoDelete = (id, name) => {
+        setIdDelete(id)
+        setNameDelete(name)
     }
 
     useEffect(() => {
@@ -152,8 +148,6 @@ export const ListFacility = () => {
                                                 <button
                                                     type="button"
                                                     className="btn btn-primary"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"
                                                 >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
@@ -174,93 +168,60 @@ export const ListFacility = () => {
 
                                             </Link>
 
-
-
-                                            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                Launch demo modal
+                                            <button
+                                                type="button"
+                                                className="btn btn-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal"
+                                                onClick={() => getInfoDelete(facility.id, facility.name)}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width={16}
+                                                    height={16}
+                                                    fill="currentColor"
+                                                    className="bi bi-trash"
+                                                    viewBox="0 0 16 16"
+                                                >
+                                                    <path
+                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                                    <path
+                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                                </svg>
                                             </button>
 
 
-                                            <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div className="modal-dialog" role="document">
+                                            <div className="modal" tabIndex={-1} id={"exampleModal"}>
+                                                <div className="modal-dialog">
                                                     <div className="modal-content">
                                                         <div className="modal-header">
-                                                            <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                            <button type="button" className="close" data-bs-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                                            <h5 className="modal-title text-danger">Bảng xóa phòng</h5>
+                                                            <button
+                                                                type="button"
+                                                                className="btn-close"
+                                                                data-bs-dismiss="modal"
+                                                                aria-label="Close"
+                                                            />
                                                         </div>
                                                         <div className="modal-body">
-                                                            ...
+                                                            <div>Bạn có muốn xóa <h5 className={"text-danger"}>{nameDelete} ?</h5></div>
                                                         </div>
                                                         <div className="modal-footer">
-                                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" className="btn btn-primary">Save changes</button>
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-secondary"
+                                                                data-bs-dismiss="modal"
+                                                            >
+                                                                Đóng
+                                                            </button>
+                                                            <button type="button" data-bs-dismiss="modal"
+                                                                    className="btn btn-danger" onClick={() => onDelete(idDelete)}>
+                                                                Xóa
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            {/*<button*/}
-                                            {/*    type="button"*/}
-                                            {/*    className="btn btn-danger"*/}
-                                            {/*    data-bs-toggle="modal"*/}
-                                            {/*    data-bs-target="#exampleModal"*/}
-                                            {/*    onClick={openModal}*/}
-                                            {/*>*/}
-                                            {/*    <svg*/}
-                                            {/*        xmlns="http://www.w3.org/2000/svg"*/}
-                                            {/*        width={16}*/}
-                                            {/*        height={16}*/}
-                                            {/*        fill="currentColor"*/}
-                                            {/*        className="bi bi-trash"*/}
-                                            {/*        viewBox="0 0 16 16"*/}
-                                            {/*    >*/}
-                                            {/*        <path*/}
-                                            {/*            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>*/}
-                                            {/*        <path*/}
-                                            {/*            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>*/}
-                                            {/*    </svg>*/}
-                                            {/*</button>*/}
-
-
-                                            {/* /!*Modal xóa *!/*/}
-                                            {/*<div*/}
-                                            {/*    className="modal fade"*/}
-                                            {/*    id="exampleModal1"*/}
-                                            {/*    tabIndex={-1}*/}
-                                            {/*    aria-labelledby="exampleModalLabel"*/}
-                                            {/*    aria-hidden="true"*/}
-                                            {/*>*/}
-                                            {/*    <div className="modal-dialog">*/}
-                                            {/*        <div className="modal-content">*/}
-                                            {/*            <div className="modal-header">*/}
-                                            {/*                <h5 className="modal-title" id="exampleModalLabel">*/}
-                                            {/*                    Modal title*/}
-                                            {/*                </h5>*/}
-                                            {/*                <button*/}
-                                            {/*                    type="button"*/}
-                                            {/*                    className="btn-close"*/}
-                                            {/*                    data-bs-dismiss="modal"*/}
-                                            {/*                    aria-label="Close"*/}
-                                            {/*                />*/}
-                                            {/*            </div>*/}
-                                            {/*            <div className="modal-body">...</div>*/}
-                                            {/*            <div className="modal-footer">*/}
-                                            {/*                <button*/}
-                                            {/*                    type="button"*/}
-                                            {/*                    className="btn btn-secondary"*/}
-                                            {/*                    data-bs-dismiss="modal"*/}
-                                            {/*                >*/}
-                                            {/*                    Close*/}
-                                            {/*                </button>*/}
-                                            {/*                <button onClick={() => onDelete(facility.id)} type="button" className="btn btn-primary">*/}
-                                            {/*                    Save changes*/}
-                                            {/*                </button>*/}
-                                            {/*            </div>*/}
-                                            {/*        </div>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
                                         </div>
                                     </div>
                                 </div>

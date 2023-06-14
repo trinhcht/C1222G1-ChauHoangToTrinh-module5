@@ -3,8 +3,9 @@ import {Header} from "./Header";
 import {Footer} from "./Footer";
 import '../index.css'
 import {Link, useNavigate} from "react-router-dom";
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as FacilityService from "../service/FacilityService";
+import * as Yup from 'yup';
 
 
 export function CreateFacility() {
@@ -13,7 +14,6 @@ export function CreateFacility() {
     return (
         <Formik
             initialValues = {{
-                id: "",
                 name: "",
                 img: "",
                 facilitiesType: "",
@@ -23,6 +23,17 @@ export function CreateFacility() {
                 rentType: "",
                 serviceFree: "",
             }}
+            validationSchema={Yup.object({
+                name: Yup.string().required('Không được bỏ trống'),
+                img: Yup.string().required('Không được bỏ trống'),
+                facilitiesType:Yup.string().notOneOf(['0'], 'Không được bỏ trống').required('Không được bỏ trống'),
+                area: Yup.number().positive('Diện tích phải là số dương').required('Không được bỏ trống'),
+                price: Yup.number().positive('Chi phí thuê phải là số dương').required('Không được bỏ trống'),
+                people: Yup.number().positive('Số lượng người tối đa phải là số dương').required('Không được bỏ trống'),
+                rentType: Yup.string().required('Không được bỏ trống').matches(/^(Ngày|Tháng|Năm)$/, 'Kiểu thuê không hợp lệ (Ngày|Tháng|Năm)'),
+                serviceFree: Yup.string().required('Không được bỏ trống').matches(/^(Massage|Karaoke|Thức ăn|Nước uống|Thuê xe)$/, 'Dịch vụ đi kèm không hợp lệ (Massage|Karaoke|Thức ăn|Nước uống|Thuê xe)'),
+            })}
+
             onSubmit={(values, {setSubmitting}) => {
                 console.log({ values });
                 const create = async () =>{
@@ -65,6 +76,7 @@ export function CreateFacility() {
                                                     <option value="2">Căn hộ</option>
                                                     <option value="3">Biệt thự</option>
                                                 </Field>
+                                                <ErrorMessage name='facilitiesType' component={'div'} className='text-danger'/>
                                             </td>
                                         </tr>
 
@@ -72,22 +84,6 @@ export function CreateFacility() {
                                 </div>
                                 <div className="d-flex justify-content-center mt-3">
                                         <table className="" style={{width: 500}}>
-                                            <tr style={{height: 60}}>
-                                                <th>
-                                                    <label className="fs-5" htmlFor="id">
-                                                        ID:{" "}
-                                                    </label>
-                                                </th>
-                                                <td>
-                                                    <Field
-                                                        type="text"
-                                                        className="form-control "
-                                                        name="id"
-                                                        id="id"
-                                                        placeholder="Nhập id"
-                                                    />
-                                                </td>
-                                            </tr>
                                             <tr style={{height: 60}}>
                                                 <th>
                                                     <label className="fs-5" htmlFor="name">
@@ -102,6 +98,7 @@ export function CreateFacility() {
                                                         id="name"
                                                         placeholder="Nhập tên dịch vụ"
                                                     />
+                                                    <ErrorMessage name='name' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 60}}>
@@ -118,6 +115,7 @@ export function CreateFacility() {
                                                         id="img"
                                                         placeholder="Thêm ảnh"
                                                     />
+                                                    <ErrorMessage name='img' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 60}}>
@@ -134,6 +132,7 @@ export function CreateFacility() {
                                                         id="area"
                                                         placeholder="Nhập diện tích sử dụng"
                                                     />
+                                                    <ErrorMessage name='area' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 60}}>
@@ -150,6 +149,7 @@ export function CreateFacility() {
                                                         id="price"
                                                         placeholder="Nhập chi phí thuê"
                                                     />
+                                                    <ErrorMessage name='price' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 60}}>
@@ -166,6 +166,7 @@ export function CreateFacility() {
                                                         id="people"
                                                         placeholder="Nhập số lượng người tối đa"
                                                     />
+                                                    <ErrorMessage name='people' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 60}}>
@@ -182,7 +183,7 @@ export function CreateFacility() {
                                                         id="rentType"
                                                         placeholder="Ngày/Tháng/Năm"
                                                     />
-
+                                                    <ErrorMessage name='rentType' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 60}}>
@@ -199,6 +200,7 @@ export function CreateFacility() {
                                                         id="serviceFree"
                                                         placeholder="Massage/Thuê xe/Thức ăn/Karaoke"
                                                     />
+                                                    <ErrorMessage name='serviceFree' component={'div'} className='text-danger'/>
                                                 </td>
                                             </tr>
                                             <tr style={{height: 120}}>

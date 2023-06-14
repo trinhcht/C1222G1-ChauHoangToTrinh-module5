@@ -4,15 +4,30 @@ import {Footer} from "./Footer";
 import dbData from "../db.json"
 import {Link, useNavigate} from "react-router-dom";
 import {findAllCustomer, getCustomerType} from "../service/CustomerService";
+import {remove} from "../service/CustomerService";
 
 export const ListCustomer = () => {
     const navigate = useNavigate();
     const [customer, setCustomer] = useState(dbData.customerList)
     const [customerTypes, setCustomerTypes] = useState([])
+    const [idDelete, setIdDelete] = useState(null)
+    const [nameDelete, setNameDelete] = useState(null)
 
     const getListCustomer = async () => {
         const listCustomer = await findAllCustomer();
         setCustomer(listCustomer);
+    }
+
+    const onDelete = async (id) => {
+        const res = await remove(id);
+        if(res.code === 200){
+            await getListCustomer();
+        }
+    }
+
+    const getInfoDelete = (id, name) => {
+        setIdDelete(id)
+        setNameDelete(name)
     }
 
     useEffect(() => {
@@ -113,8 +128,6 @@ export const ListCustomer = () => {
                                             <button
                                                 type="button"
                                                 className="btn btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -139,6 +152,7 @@ export const ListCustomer = () => {
                                             className="btn btn-danger"
                                             data-bs-toggle="modal"
                                             data-bs-target="#exampleModal"
+                                            onClick={() => getInfoDelete(customer.id, customer.name)}
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +180,7 @@ export const ListCustomer = () => {
                                                 <div className="modal-content">
                                                     <div className="modal-header">
                                                         <h5 className="modal-title" id="exampleModalLabel">
-                                                            Modal title
+                                                            Xóa khách hàng
                                                         </h5>
                                                         <button
                                                             type="button"
@@ -175,17 +189,20 @@ export const ListCustomer = () => {
                                                             aria-label="Close"
                                                         />
                                                     </div>
-                                                    <div className="modal-body">...</div>
+                                                    <div className="modal-body">
+                                                        <div>Bạn có muốn xóa <h5 className={"text-danger"}>{nameDelete} ?</h5></div>
+                                                    </div>
                                                     <div className="modal-footer">
                                                         <button
                                                             type="button"
                                                             className="btn btn-secondary"
                                                             data-bs-dismiss="modal"
                                                         >
-                                                            Close
+                                                            Đóng
                                                         </button>
-                                                        <button type="button" className="btn btn-primary">
-                                                            Save changes
+                                                        <button type="button" data-bs-dismiss="modal"
+                                                                className="btn btn-danger" onClick={() => onDelete(idDelete)}>
+                                                            Xóa
                                                         </button>
                                                     </div>
                                                 </div>

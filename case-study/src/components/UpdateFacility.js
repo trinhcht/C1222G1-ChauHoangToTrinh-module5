@@ -55,6 +55,7 @@ export const UpdateFacility = () => {
 
     const dataUpdate = facilitys.find(o => o.id === idUpdate);
 
+
     useEffect(() => {
         getListFacilities();
         const fetchFacilityTypes = async () => {

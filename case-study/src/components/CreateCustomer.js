@@ -13,19 +13,17 @@ export function CreateCustomer() {
     return (
         <Formik
             initialValues={{
-                id: "",
                 name: "",
                 dateOfBirth: "",
                 gender: "",
                 citizenIdentification: "",
                 phone: "",
                 email: "",
-                customerType: "",
+                customerType: parseInt("0"),
                 address: "",
             }}
             onSubmit={(values, {setSubmitting}) => {
                 console.log({values});
-                // actions.setSubmitting(false);
                 const create = async () => {
                     await CustomerService.save(values)
                     setSubmitting(false)
@@ -60,23 +58,23 @@ export function CreateCustomer() {
                                 <div className="d-flex justify-content-center mt-3"
                                      style={{width: "33rem", marginLeft: "11rem"}}>
                                     <table className="" style={{width: 500}}>
-                                        <tr style={{height: 60}}>
-                                            <th>
-                                                <label className="fs-5" htmlFor="id">
-                                                    ID:{" "}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <Field
-                                                    style={{width: "18rem"}}
-                                                    type="text"
-                                                    className="form-control "
-                                                    name="id"
-                                                    id="id"
-                                                    placeholder="Nhập id"
-                                                />
-                                            </td>
-                                        </tr>
+                                        {/*<tr style={{height: 60}}>*/}
+                                        {/*    <th>*/}
+                                        {/*        <label className="fs-5" htmlFor="id">*/}
+                                        {/*            ID:{" "}*/}
+                                        {/*        </label>*/}
+                                        {/*    </th>*/}
+                                        {/*    <td>*/}
+                                        {/*        <Field*/}
+                                        {/*            style={{width: "18rem"}}*/}
+                                        {/*            type="text"*/}
+                                        {/*            className="form-control "*/}
+                                        {/*            name="id"*/}
+                                        {/*            id="id"*/}
+                                        {/*            placeholder="Nhập id"*/}
+                                        {/*        />*/}
+                                        {/*    </td>*/}
+                                        {/*</tr>*/}
                                         <tr style={{height: 60}}>
                                             <th>
                                                 <label className="fs-5" htmlFor="name">

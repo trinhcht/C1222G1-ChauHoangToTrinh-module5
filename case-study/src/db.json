@@ -56,48 +56,70 @@
       "address": "123 Nguyễn Hoàng, Đà Nẵng"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Nguyễn Thị H",
       "dateOfBirth": "11-09-2000",
       "gender": "Nữ",
       "citizenIdentification": 9243649492,
       "phone": "0344648294",
       "email": "nguyenthih@gmail.com",
-      "customerType": 1,
+      "customerType": 2,
       "address": "12 Trần Hưng Đạo, Đà Nẵng"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Trần Văn K",
       "dateOfBirth": "11-09-2000",
       "gender": "Nam",
       "citizenIdentification": 345435334445,
       "phone": "0363434535",
       "email": "tranvank@gmail.com",
-      "customerType": "1",
+      "customerType": 2,
       "address": "12 Trần Hưng Đạo, Đà Nẵng"
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "sdsfbj",
       "dateOfBirth": "11-09-2000",
       "gender": "Nam",
       "citizenIdentification": 4548264964,
       "phone": "0333324133",
       "email": "fdfsd@gmail.com",
-      "customerType": "1",
+      "customerType": 1,
       "address": "12 Trần Hưng Đạo, Đà Nẵng"
     },
     {
-      "id": "8",
+      "id": 7,
       "name": "Nguyễn Thị H",
       "dateOfBirth": "11-09-2000",
       "gender": "Nữ",
       "citizenIdentification": 555343,
       "phone": "0344648294",
       "email": "nguyenthih@gmail.com",
-      "customerType": "1",
+      "customerType": 2,
       "address": "12 Trần Hưng Đạo, Đà Nẵng"
+    },
+    {
+      "id": 8,
+      "name": "Nguyễn Thị H",
+      "dateOfBirth": "11-09-2000",
+      "gender": "Nữ",
+      "citizenIdentification": 564654,
+      "phone": "0344648294",
+      "email": "nguyenthih@gmail.com",
+      "customerType": 4,
+      "address": "12 Trần Hưng Đạo, Đà Nẵng"
+    },
+    {
+      "name": "điện thoại",
+      "dateOfBirth": "11-09-2000",
+      "gender": "Nữ",
+      "citizenIdentification": 54354525233,
+      "phone": "0333324133",
+      "email": "fdfsd@gmail.com",
+      "customerType": 1,
+      "address": "12 Trần Hưng Đạo, Đà Nẵng",
+      "id": 9
     }
   ],
   "facilitiesList": [
@@ -173,7 +195,7 @@
       "description": null,
       "poolarea": null,
       "numberFloors": null,
-      "serviceFree": "massage",
+      "serviceFree": "Massage",
       "facilityService": [
         1,
         2
@@ -206,7 +228,7 @@
       "rentType": 1,
       "img": "https://furamavietnam.com/wp-content/uploads/2018/08/Vietnam_Danang_Furama_Villas_Beach_Pool_Villas-_Exterior-1-F.jpg",
       "people": "4",
-      "facilitiesType": 2,
+      "facilitiesType": null,
       "standard": 1,
       "description": "abc",
       "poolarea": "30m2",
@@ -265,72 +287,17 @@
       "rentType": "2",
       "img": "https://file4.batdongsan.com.vn/resize/745x510/2019/10/01/20191001164854-ce98_wm.jpg",
       "people": "4",
-      "facilitiesType": 3,
+      "facilitiesType": 2,
       "standard": "2",
       "description": "Đầy đủ tiện nghi",
       "poolarea": null,
       "numberFloors": "15",
-      "serviceFree": "",
+      "serviceFree": "Thức ăn",
       "facilityService": [
         "1",
         "2",
         "3"
       ]
-    },
-    {
-      "id": "14",
-      "name": "Phòng toooo",
-      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
-      "facilitiesType": 1,
-      "area": "100",
-      "price": 150000,
-      "people": "4",
-      "rentType": "Ngày",
-      "serviceFree": "Thức ăn"
-    },
-    {
-      "id": "15",
-      "name": "Phòng toooogdgf",
-      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
-      "facilitiesType": "",
-      "area": "100",
-      "price": 150000,
-      "people": "4",
-      "rentType": "Ngày",
-      "serviceFree": "Thức ăn"
-    },
-    {
-      "id": "16",
-      "name": "Phòng tooooxxxxx",
-      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
-      "facilitiesType": "",
-      "area": "100",
-      "price": 150000,
-      "people": "4",
-      "rentType": "Ngày",
-      "serviceFree": "Thức ăn"
-    },
-    {
-      "id": "17",
-      "name": "Phòng toooo1",
-      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
-      "facilitiesType": "",
-      "area": "100",
-      "price": 150000,
-      "people": "4",
-      "rentType": "Ngày",
-      "serviceFree": "Thức ăn"
-    },
-    {
-      "id": "18",
-      "name": "Phòng toooo12",
-      "img": "https://www.vn.kayak.com/rimg/himg/1b/20/2e/revato-17783-12415069-388008.jpg?width=1366&height=768&crop=true",
-      "facilitiesType": "1",
-      "area": "100",
-      "price": 150000,
-      "people": "4",
-      "rentType": "Ngày",
-      "serviceFree": "Thức ăn"
     }
   ],
   "facilityService": [

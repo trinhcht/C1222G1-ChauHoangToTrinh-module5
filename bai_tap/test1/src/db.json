@@ -1,0 +1,50 @@
+{
+  "productType": [
+    {
+      "id": 1,
+      "nameType": "Điện thoại"
+    },
+    {
+      "id": 2,
+      "nameType": "Máy tính bảng"
+    },
+    {
+      "id": 3,
+      "nameType": "Laptop"
+    }
+  ],
+  "productList": [
+    {
+      "id": 1,
+      "code": "SP-1234",
+      "name": "iphone x",
+      "price": "13000000",
+      "productType": 1,
+      "date": "10-10-2020"
+    },
+    {
+      "id": 2,
+      "code": "SP-1235",
+      "name": "Samsung Galaxy A9",
+      "price": "11000000",
+      "productType": 1,
+      "date": "10-11-2020"
+    },
+    {
+      "id": 3,
+      "code": "SP-1236",
+      "name": "Ipad 7",
+      "price": "12000000",
+      "productType": 2,
+      "date": "07-09-2020"
+    },
+    {
+      "id": 4,
+      "code": "SP-1237",
+      "name": "Laptop HP",
+      "price": "18000000",
+      "productType": 3,
+      "date": "16-12-2021"
+    }
+  ]
+}

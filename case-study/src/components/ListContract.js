@@ -66,7 +66,7 @@ export const ListContract  = () => {
                             <table className="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>STT</th>
+                                    <th>ID</th>
                                     <th>Mã hợp đồng</th>
                                     <th>Ngày bắt đầu</th>
                                     <th>Ngày kết thúc</th>
