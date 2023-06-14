@@ -53,12 +53,20 @@ export const ListCustomer = () => {
                             src="https://blog.topcv.vn/wp-content/uploads/2017/11/ks.jpg"
                             alt=""
                         />
-                    </div>
-                    <div>
-                        <h2 className="text-center pt-4" style={{fontFamily: '"Bahnschrift"'}}>
-                            Danh sách khách hàng{" "}
+                        <h2 className="text-center pt-4" style={{
+                            fontFamily: '"Playfair Display"',
+                            position: "absolute",
+                            margin: "inherit",
+                            fontSize: 40,
+                            color: "#0000ff",
+                            textAlign: "center",
+                            fontWeight: 700,
+                            fontStyle: "normal"
+                        }}>
+                            DANH SÁCH KHÁCH HÀNG
                         </h2>
                     </div>
+                    <div><h2></h2></div>
                     {/*thêm mới*/}
                     <div>
                         <Link to={`/customer/create`}>

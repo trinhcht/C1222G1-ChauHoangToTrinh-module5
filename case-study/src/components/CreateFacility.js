@@ -70,7 +70,7 @@ export function CreateFacility() {
                                             <td>
                                                 <Field as={"select"} id='facilitiesType' name="facilitiesType" className="form-select mt-3"
                                                        aria-label="Danh sách cơ sở"
-                                                       style={{marginLeft: "27rem", width: "13rem"}}>
+                                                       style={{marginLeft: "27rem", width: "14rem"}}>
                                                     <option value="0">Danh sách cơ sở</option>
                                                     <option value="1">Phòng</option>
                                                     <option value="2">Căn hộ</option>
@@ -92,6 +92,7 @@ export function CreateFacility() {
                                                 </th>
                                                 <td>
                                                     <Field
+                                                        style={{marginLeft: "2rem", width: "19rem"}}
                                                         type="text"
                                                         className="form-control "
                                                         name="name"
@@ -204,17 +205,17 @@ export function CreateFacility() {
                                                 </td>
                                             </tr>
                                             <tr style={{height: 120}}>
-                                                <td>
-                                                    <div style={{marginLeft: "7rem"}}>
+                                                <td style={{marginLeft: "auto", marginRight: "auto"}}>
+                                                    <div style={{marginLeft: "7rem", textAlign: "center", display: "flex", justifyContent: "center"}}>
                                                         <Link to={`/`}>
                                                             <button type="button"
-                                                                    className="btn btn-secondary"
                                                                     className="btn btn-dark me-4"
                                                                     data-dismiss="modal">Đóng
                                                             </button>
                                                         </Link>
 
                                                         <button
+                                                            style={{width: "6rem"}}
                                                             type="submit" className="btn btn-primary"
                                                         >
                                                             Xác nhận
@@ -226,7 +227,6 @@ export function CreateFacility() {
                                         </table>
                                 </div>
                             </Form>
-
                         </div>
                         <div className="col-5 p-0">
                             <img

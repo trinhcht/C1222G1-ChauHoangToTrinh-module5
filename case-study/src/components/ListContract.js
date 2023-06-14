@@ -36,12 +36,20 @@ export const ListContract = () => {
                             src="https://saigonrealestate.vn/wp-content/uploads/2022/03/phoi-canh-biet-thu-Furama-Resort-Spa-Phu-Quoc.jpg"
                             alt=""
                         />
-                    </div>
-                    <div>
-                        <h2 className="text-center pt-4" style={{fontFamily: '"Bahnschrift"'}}>
-                            Danh sách hợp đồng
+                        <h2 className="text-center pt-4" style={{
+                            fontFamily: '"Playfair Display"',
+                            position: "absolute",
+                            margin: "inherit",
+                            fontSize: 40,
+                            color: "#FF0000",
+                            textAlign: "center",
+                            fontWeight: 700,
+                            fontStyle: "normal"
+                        }}>
+                            DANH SÁCH HỢP ĐỒNG
                         </h2>
                     </div>
+                    <div><h2></h2></div>
                     {/*thêm mới*/}
                     <div>
                         <Link to={`/contract/create`}>

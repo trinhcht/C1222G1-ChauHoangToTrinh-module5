@@ -84,7 +84,7 @@ export const UpdateFacility = () => {
                                 <th></th>
                                 <td>
                                     <select value={type} className="form-select mt-3" aria-label="Danh sách cơ sở"
-                                            style={{marginLeft: "27rem", width: "13rem"}}
+                                            style={{marginLeft: "27rem", width: "14rem"}}
                                             onChange={(e) => {
                                                 setType(e.target.value)
                                                 setValues(prev => ({
@@ -204,7 +204,7 @@ export const UpdateFacility = () => {
                                             </label>
                                         </th>
                                         <td>
-                                            <input
+                                            <input style={{marginLeft: "2rem", width: "19rem"}}
                                                 type="text"
                                                 className="form-control "
                                                 name=""
@@ -235,16 +235,17 @@ export const UpdateFacility = () => {
                                         </td>
                                     </tr>
                                     <tr style={{height: 120}}>
-                                        <td>
-                                            <div style={{marginLeft: "7rem"}}>
+                                        <td style={{marginLeft: "auto", marginRight: "auto"}}>
+                                            <div style={{marginLeft: "7rem", textAlign: "center", display: "flex", justifyContent: "center"}}>
                                                 <Link to={`/`}>
                                                     <button type="button" onClick={() => setIsShow(false)}
-                                                            className="btn btn-secondary" className="btn btn-dark me-4"
+                                                            className="btn btn-dark me-4"
                                                             data-dismiss="modal">Đóng
                                                     </button>
                                                 </Link>
 
                                                 <button
+                                                    style={{width: "6rem"}}
                                                     type="button" onClick={onUpdate} className="btn btn-primary"
                                                 >
                                                     Xác nhận

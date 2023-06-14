@@ -44,7 +44,7 @@ export function CreateContract() {
                     <Header/>
                 </>
                 <>
-                    <div style={{marginTop: 96, backgroundColor: "rgb(232, 235, 219)"}}>
+                    <div style={{marginTop: 96, backgroundColor: "rgb(245,228,248)"}}>
                         <div className="row mx-0">
                             <div className="col-7">
                                 <div className="text-center fw-bold" style={{marginTop: "5%"}}>
