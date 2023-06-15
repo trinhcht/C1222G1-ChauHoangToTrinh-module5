@@ -35,7 +35,6 @@ export function CreateFacility() {
             })}
 
             onSubmit={(values, {setSubmitting}) => {
-                console.log({ values });
                 const create = async () =>{
                     await FacilityService.save(values)
                     setSubmitting(false)

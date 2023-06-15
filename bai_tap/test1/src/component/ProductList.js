@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as ProductService from "../service/ProductService";
-import {findAll, getProductType} from "../service/ProductService";
+import {findAll, getProductType, remove} from "../service/ProductService";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import {Field, Form, Formik} from "formik";
@@ -23,9 +23,10 @@ export const ProductList = () => {
     const onDelete = async (id) => {
         const res = await remove(id);
         console.log("res", res)
-        if(res.code === 200){
+        if(res?.code === 200){
             await getListProduct();
         }
+        getListProduct();
     }
 
     const getInfoDelete = (id, name) => {
@@ -104,19 +105,18 @@ export const ProductList = () => {
                             }</td>
                             <td>{product.date}</td>
                             <td>
-                                <Link to={`/update/${product.id}`}>
-                                    <button>Chỉnh sửa</button>
-                                </Link>
+                                {/*<Link to={`/update/${product.id}`}>*/}
+                                {/*    <button>Chỉnh sửa</button>*/}
+                                {/*</Link>*/}
 
                                 <button
                                     type="button"
                                     className="btn btn-danger"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"
-                                    onClick={() => getInfoDelete(products.id, products.name)}
+                                    onClick={() => getInfoDelete(product.id, product.name)}
                                 >Delete
                                 </button>
-
                             </td>
                         </tr>
                     )

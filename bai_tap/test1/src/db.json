@@ -23,14 +23,6 @@
       "date": "10-10-2020"
     },
     {
-      "id": 2,
-      "code": "SP-1235",
-      "name": "Samsung Galaxy A9",
-      "price": "11000000",
-      "productType": 1,
-      "date": "10-11-2020"
-    },
-    {
       "id": 3,
       "code": "SP-1236",
       "name": "Ipad 7",
@@ -45,6 +37,22 @@
       "price": "18000000",
       "productType": 3,
       "date": "16-12-2021"
+    },
+    {
+      "id": 5,
+      "code": "SP-1278",
+      "name": "Phòng toooo",
+      "price": 150000,
+      "productType": 2,
+      "date": "10/10/2009"
+    },
+    {
+      "code": "SP-1279",
+      "name": "điện thoại",
+      "price": 10000,
+      "productType": 1,
+      "date": "10/10/2009",
+      "id": 6
     }
   ]
 }

@@ -4,11 +4,12 @@ import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import dbData from "../db.json";
 import {findAllCustomer, update} from "../service/CustomerService";
+import {ErrorMessage, Field, Formik} from "formik";
+import * as Yup from "yup";
 
 export const UpdateCustomer = () => {
     let paramsCustomer = useParams();
     const data = dbData.customerList.find(customer => customer.id == paramsCustomer.id);
-    console.log("data", data)
     const navigate = useNavigate();
     const [customers, setCustomer] = useState([])
     const [customerTypes, setCustomerTypes] = useState([])
@@ -32,6 +33,18 @@ export const UpdateCustomer = () => {
         navigate('/customer');
     }
 
+    const handleValidation = (event, fieldName) => {
+        {Yup.object({
+                name: Yup.string().required('Không được bỏ trống'),
+                dateOfBirth: Yup.string().required('Không được bỏ trống').matches(/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/, 'Định dạng ngày tháng không hợp lệ (dd/mm/yyyy)'),
+                gender: Yup.string().required('Không được bỏ trống').matches(/^(Nam|Nữ|Khác)$/, 'Giới tính không hợp lệ (Nam|Nữ|Khác)'),
+                citizenIdentification: Yup.number().positive('Không được chứa dấu -').required('Không được bỏ trống'),
+                phone: Yup.string().matches(/^\d{10}$/, 'Số điện thoại phải có 10 chữ số').required('Không được bỏ trống'),
+                email: Yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,'Email phải có định dạng xxxx@yyyy.com').required('Không được bỏ trống'),
+                customerType: Yup.string().notOneOf(['0'], 'Không được bỏ trống').required('Không được bỏ trống'),
+                address: Yup.string().required('Không được bỏ trống'),
+            })}
+    }
 
     const handleUpdate = (id) => {
         setIsShow(true)
@@ -68,7 +81,9 @@ export const UpdateCustomer = () => {
             <>
                 <Header/>
             </>
+            <Formik
 
+            >
             <>
                 <div
                     className="row mx-0"
@@ -101,6 +116,7 @@ export const UpdateCustomer = () => {
                                                     onChange(e, 'name')
                                                 }}
                                             />
+                                            <ErrorMessage name='name' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -119,6 +135,7 @@ export const UpdateCustomer = () => {
                                                     onChange(e, 'dateOfBirth')
                                                 }}
                                             />
+                                            <ErrorMessage name='dateOfBirth' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -136,6 +153,7 @@ export const UpdateCustomer = () => {
                                                        onChange(e, 'gender')
                                                    }}
                                             />
+                                            <ErrorMessage name='gender' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -154,6 +172,7 @@ export const UpdateCustomer = () => {
                                                     onChange(e, 'citizenIdentification')
                                                 }}
                                             />
+                                            <ErrorMessage name='citizenIdentification' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -172,6 +191,7 @@ export const UpdateCustomer = () => {
                                                     onChange(e, 'phone')
                                                 }}
                                             />
+                                            <ErrorMessage name='phone' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -190,6 +210,7 @@ export const UpdateCustomer = () => {
                                                     onChange(e, 'email')
                                                 }}
                                             />
+                                            <ErrorMessage name='email' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 60}}>
@@ -200,7 +221,7 @@ export const UpdateCustomer = () => {
                                         </th>
 
                                         <td>
-                                            <select value={type} className="form-select" aria-label=""
+                                            <Field as={"select"}value={type} className="form-select" aria-label=""
                                                     style={{marginLeft: "10rem", width: "13rem"}}
                                                     onChange={(e) => {
                                                         setType(e.target.value)
@@ -215,7 +236,8 @@ export const UpdateCustomer = () => {
                                                 <option value="3">Gold</option>
                                                 <option value="4">Silver</option>
                                                 <option value="5">Member</option>
-                                            </select>
+                                            </Field>
+                                            <ErrorMessage name='customerType' component={'div'} className='text-danger'/>
                                         </td>
 
                                     </tr>
@@ -235,6 +257,7 @@ export const UpdateCustomer = () => {
                                                     onChange(e, 'address')
                                                 }}
                                             />
+                                            <ErrorMessage name='address' component={'div'} className='text-danger'/>
                                         </td>
                                     </tr>
                                     <tr style={{height: 120}}>
@@ -271,6 +294,7 @@ export const UpdateCustomer = () => {
                     </div>
                 </div>
             </>
+            </Formik>
             <>
                 <Footer/>
             </>

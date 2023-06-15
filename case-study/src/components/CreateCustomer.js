@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as CustomerService from "../service/CustomerService"
-import React from "react";
+import React, {useState} from "react";
 import '../index.css'
 import {Footer} from "./Footer";
 import {Link} from "react-router-dom";
@@ -36,8 +36,9 @@ export function CreateCustomer() {
             })}
 
             onSubmit={(values, {setSubmitting}) => {
-                console.log({values});
+                {console.log("customerType",values)}
                 const create = async () => {
+                    values.customerType = parseInt(values.customerType);
                     await CustomerService.save(values)
                     setSubmitting(false)
                     navigate('/customer')

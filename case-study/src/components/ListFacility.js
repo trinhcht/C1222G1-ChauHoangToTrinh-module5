@@ -19,6 +19,10 @@ export const ListFacility = () => {
         navigate(`/update/${idToUpdate}`);
     }
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(6);
+    const [facilityList, setFacilityList] = useState([]);
+
 
     const handleUpdate = (id) => {
         setIsShow(true)
@@ -56,6 +60,7 @@ export const ListFacility = () => {
         setNameDelete(name)
     }
 
+
     useEffect(() => {
         getListFacilities();
         const fetchFacilityTypes = async () => {
@@ -64,6 +69,16 @@ export const ListFacility = () => {
         }
         fetchFacilityTypes()
     }, [])
+
+    const totalPages = Math.ceil(dbData.facilitiesList.length / itemsPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentFacility = dbData.facilitiesList.slice(startIndex, endIndex);
 
     return (
         <>
@@ -126,8 +141,7 @@ export const ListFacility = () => {
                         </Link>
                     </div>
                     <div className="row mx-0 mt-3 py-1" style={{padding: "0 100px"}}>
-                        {facilitys?.map((facility, index) => {
-                            {console.log("data", facility)}
+                        {currentFacility?.map((facility, index) => {
                             return(
                                 <div className="col-4 d-flex justify-content-center" style={{marginBottom: "2rem"}}>
                                     <div className="card" style={{width: 380}}>
@@ -234,73 +248,56 @@ export const ListFacility = () => {
                         className="d-flex justify-content-center"
                         aria-label="Page navigation example"
                     >
-                        <ul className="pagination">
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    Trước
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    1
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    2
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    3
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    Sau
-                                </a>
-                            </li>
-                        </ul>
+                        <div>
+                            <ul className="pagination">
+                                <li className="page-item">
+                                    <button
+                                        className="page-link"
+                                        style={{
+                                            border: "none",
+                                            backgroundColor: "#daeae9",
+                                            color: "#1d1d1c"
+                                        }}
+                                        disabled={currentPage === 1}
+                                        onClick={() => handlePageChange(currentPage - 1)}
+                                    >
+                                        Trước
+                                    </button>
+                                </li>
+                                <li className="page-item" style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                                    {[...Array(totalPages)].map((_, i) => (
+                                        <button
+                                            key={i}
+                                            className={`page-link ${currentPage === i + 1 ? 'active' : ''}`}
+                                            onClick={() => handlePageChange(i + 1)}
+                                            className="page-link"
+                                            style={{
+                                                border: "none",
+                                                backgroundColor: "#daeae9",
+                                                color: "#1d1d1c"
+                                            }}
+                                        >
+                                            {i + 1}
+                                        </button>
+                                    ))}
+                                </li>
+                                <li className="page-item">
+                                    <button
+                                        disabled={currentPage === totalPages}
+                                        onClick={() => handlePageChange(currentPage + 1)}
+                                        className="page-link"
+                                        href="#"
+                                        style={{
+                                            border: "none",
+                                            backgroundColor: "#daeae9",
+                                            color: "#1d1d1c"
+                                        }}
+                                    >
+                                        Sau
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
                 </>
 

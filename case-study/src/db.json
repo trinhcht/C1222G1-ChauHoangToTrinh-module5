@@ -31,7 +31,8 @@
       "phone": "0909999343",
       "email": "nguyenvanaa@gmail.com",
       "customerType": 2,
-      "address": "1 Hoàng Văn Thụ, Đà Nẵng"
+      "address": "1 Hoàng Văn Thụ, Đà Nẵng",
+      "": ""
     },
     {
       "id": 2,
@@ -131,6 +132,50 @@
       "customerType": 1,
       "address": "12 Trần Hưng Đạo, Đà Nẵng",
       "id": 10
+    },
+    {
+      "name": "Phan Văn L",
+      "dateOfBirth": "11/09/2000",
+      "gender": "Nam",
+      "citizenIdentification": 36535353453,
+      "phone": "0344648294",
+      "email": "phanvanl@gmail.com",
+      "customerType": 3,
+      "address": "12 Trần Hưng Đạo, Đà Nẵng",
+      "id": 11
+    },
+    {
+      "name": "Nguyễn Thị H",
+      "dateOfBirth": "11/09/2000",
+      "gender": "Nữ",
+      "citizenIdentification": 64565454754,
+      "phone": "0344648294",
+      "email": "nguyenthih@gmail.com",
+      "customerType": 2,
+      "address": "12 Trần Hưng Đạo, Đà Nẵng",
+      "id": 12
+    },
+    {
+      "name": "Phòng toooo",
+      "dateOfBirth": "11/09/2000",
+      "gender": "Nam",
+      "citizenIdentification": 54355,
+      "phone": "0927534755",
+      "email": "dfdf@gmail.com",
+      "customerType": 1,
+      "address": "dfffd",
+      "id": 13
+    },
+    {
+      "name": "Nguyễn Thị H",
+      "dateOfBirth": "11/09/2000",
+      "gender": "Nữ",
+      "citizenIdentification": 543453,
+      "phone": "0344648294",
+      "email": "nguyenthih@gmail.com",
+      "customerType": 2,
+      "address": "12 Trần Hưng Đạo, Đà Nẵng",
+      "id": 14
     }
   ],
   "facilitiesList": [
@@ -142,7 +187,7 @@
       "rentType": "Ngày",
       "img": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-768x497.jpg",
       "people": "4",
-      "facilitiesType": null,
+      "facilitiesType": 1,
       "standard": null,
       "description": null,
       "poolarea": null,

@@ -3,8 +3,8 @@ import {Header} from "./Header";
 import {Footer} from "./Footer";
 import dbData from "../db.json"
 import {Link, useNavigate} from "react-router-dom";
-import {findAllCustomer, getCustomerType} from "../service/CustomerService";
-import {remove} from "../service/CustomerService";
+import {findAllCustomer, getCustomerType, remove} from "../service/CustomerService";
+import data from "bootstrap/js/src/dom/data";
 
 export const ListCustomer = () => {
     const navigate = useNavigate();
@@ -13,6 +13,10 @@ export const ListCustomer = () => {
     const [idDelete, setIdDelete] = useState(null)
     const [nameDelete, setNameDelete] = useState(null)
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(5);
+    const [customerList, setCustomerList] = useState([]);
+
     const getListCustomer = async () => {
         const listCustomer = await findAllCustomer();
         setCustomer(listCustomer);
@@ -20,7 +24,7 @@ export const ListCustomer = () => {
 
     const onDelete = async (id) => {
         const res = await remove(id);
-        if(res.code === 200){
+        if (res.code === 200) {
             await getListCustomer();
         }
     }
@@ -38,6 +42,16 @@ export const ListCustomer = () => {
         }
         fetchCustomerTypes()
     }, [])
+
+    const totalPages = Math.ceil(dbData.customerList.length / itemsPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentCustomers = dbData.customerList.slice(startIndex, endIndex);
 
     return (
         <>
@@ -70,31 +84,31 @@ export const ListCustomer = () => {
                     {/*thêm mới*/}
                     <div>
                         <Link to={`/customer/create`}>
-                        <button
-                            type="button"
-                            className="btn btn-success"
-                            style={{
-                                marginBottom: "2%",
-                                marginLeft: "8%",
-                                backgroundColor: "#a5eee6"
-                            }}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={16}
-                                height={16}
-                                fill="currentColor"
-                                color="black"
-                                className="bi bi-cart4"
-                                viewBox="0 0 16 16"
+                            <button
+                                type="button"
+                                className="btn btn-success"
+                                style={{
+                                    marginBottom: "2%",
+                                    marginLeft: "8%",
+                                    backgroundColor: "#a5eee6"
+                                }}
                             >
-                                <path
-                                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                            </svg>
-                            <a href="#" style={{textDecoration: "none", color: "#1d1d1d"}}>
-                                <i className="bi bi-cart4"> Thêm khách hàng mới</i>
-                            </a>
-                        </button>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width={16}
+                                    height={16}
+                                    fill="currentColor"
+                                    color="black"
+                                    className="bi bi-cart4"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                                </svg>
+                                <a href="#" style={{textDecoration: "none", color: "#1d1d1d"}}>
+                                    <i className="bi bi-cart4"> Thêm khách hàng mới</i>
+                                </a>
+                            </button>
                         </Link>
                     </div>
                     <div className="row mx-0 mt-3 px-8 py-1">
@@ -114,10 +128,10 @@ export const ListCustomer = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {dbData.customerList.map((customer, index) => (
+                            {currentCustomers.map((customer, index) => (
                                 <tr>
 
-                                    <td scope="row">{customer.id}</td>
+                                    <td scope="row">{index+1}</td>
                                     <td>{customer.name}</td>
                                     <td>{customer.dateOfBirth}</td>
                                     <td>{customer.gender}</td>
@@ -198,7 +212,8 @@ export const ListCustomer = () => {
                                                         />
                                                     </div>
                                                     <div className="modal-body">
-                                                        <div>Bạn có muốn xóa <h5 className={"text-danger"}>{nameDelete} ?</h5></div>
+                                                        <div>Bạn có muốn xóa <h5
+                                                            className={"text-danger"}>{nameDelete} ?</h5></div>
                                                     </div>
                                                     <div className="modal-footer">
                                                         <button
@@ -209,7 +224,8 @@ export const ListCustomer = () => {
                                                             Đóng
                                                         </button>
                                                         <button type="button" data-bs-dismiss="modal"
-                                                                className="btn btn-danger" onClick={() => onDelete(idDelete)}>
+                                                                className="btn btn-danger"
+                                                                onClick={() => onDelete(idDelete)}>
                                                             Xóa
                                                         </button>
                                                     </div>
@@ -228,73 +244,55 @@ export const ListCustomer = () => {
                         className="d-flex justify-content-center"
                         aria-label="Page navigation example"
                     >
-                        <ul className="pagination">
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    Trước
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    1
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    2
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    3
-                                </a>
-                            </li>
-                            <li className="page-item">
-                                <a
-                                    className="page-link"
-                                    href="#"
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#daeae9",
-                                        color: "#1d1d1c"
-                                    }}
-                                >
-                                    Sau
-                                </a>
-                            </li>
-                        </ul>
+                        <div>
+                            <ul className="pagination">
+                                <li className="page-item">
+                                    <button
+                                        className="page-link"
+                                        style={{
+                                            border: "none",
+                                            backgroundColor: "#daeae9",
+                                            color: "#1d1d1c"
+                                        }}
+                                        disabled={currentPage === 1}
+                                        onClick={() => handlePageChange(currentPage - 1)}
+                                    >
+                                        Trước
+                                    </button>
+                                </li>
+                                <li className="page-item" style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
+                                    {[...Array(totalPages)].map((_, i) => (
+                                        <button
+                                            key={i}
+                                            className={`page-link ${currentPage === i + 1 ? 'active' : ''}`}
+                                            onClick={() => handlePageChange(i + 1)}
+                                            style={{
+                                                border: "none",
+                                                backgroundColor: "#daeae9",
+                                                color: "#1d1d1c"
+                                            }}
+                                        >
+                                            {i + 1}
+                                        </button>
+                                    ))}
+                                </li>
+                                <li className="page-item">
+                                    <button
+                                        disabled={currentPage === totalPages}
+                                        onClick={() => handlePageChange(currentPage + 1)}
+                                        className="page-link"
+                                        href="#"
+                                        style={{
+                                            border: "none",
+                                            backgroundColor: "#daeae9",
+                                            color: "#1d1d1c"
+                                        }}
+                                    >
+                                        Sau
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
                 </>
 

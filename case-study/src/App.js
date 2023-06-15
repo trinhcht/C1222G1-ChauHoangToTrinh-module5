@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import {ListFacility} from "./components/ListFacility";
-import {NavLink, Route, Routes, createBrowserRouter, RouterProvider} from "react-router-dom"
+import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import {UpdateFacility} from "./components/UpdateFacility";
 import {CreateFacility} from "./components/CreateFacility";
 import {ListCustomer} from "./components/ListCustomer";
@@ -9,6 +9,7 @@ import {ListContract} from "./components/ListContract";
 import {UpdateCustomer} from "./components/UpdateCustomer";
 import {CreateCustomer} from "./components/CreateCustomer";
 import {CreateContract} from "./components/CreateContract";
+
 
 const router = createBrowserRouter([
     {
@@ -55,7 +56,6 @@ function App() {
             <RouterProvider
                 router={router}
             />
-
         </>
     );
 }

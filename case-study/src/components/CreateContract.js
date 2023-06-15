@@ -30,7 +30,6 @@ export function CreateContract() {
             })}
 
             onSubmit={(values, {setSubmitting}) => {
-                console.log({values});
                 const create = async () => {
                     await ContractService.save(values)
                     setSubmitting(false)

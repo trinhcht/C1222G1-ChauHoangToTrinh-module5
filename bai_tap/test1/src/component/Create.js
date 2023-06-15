@@ -20,7 +20,7 @@ export function Create() {
         <>
             <Formik
                 initialValues={{
-                    id: "",
+                    // id: "",
                     code: "",
                     name: "",
                     price: "",
@@ -28,7 +28,7 @@ export function Create() {
                     date: "",
                 }}
                 validationSchema={Yup.object({
-                    id: Yup.number().required('Không được bỏ trống'),
+                    // id: Yup.number().required('Không được bỏ trống'),
                     code: Yup.string().matches(/^SP-\d{4}$/, 'Mã sản phẩm không hợp lệ').required('Không được bỏ trống'),
                     name: Yup.string().required('Không được bỏ trống'),
                     price: Yup.number().positive('Giá sản phẩm phải là số dương').required('Không được bỏ trống'),
@@ -37,6 +37,7 @@ export function Create() {
 
                 })}
                 onSubmit={ async (values) => {
+                    values.productType = parseInt(values.productType);
                     await ProductService.save(values)
                     navigate('/')
                 }
@@ -49,19 +50,19 @@ export function Create() {
                     </div>
                     <Form>
                         <table>
-                            <tr>
-                                <th>
-                                    <label>ID:{" "}</label>
-                                </th>
-                                <td>
-                                    <Field
-                                        type="number"
-                                        name="id"
-                                        id="id"
-                                    />
-                                    <ErrorMessage name='id' component={'div'} className='text-danger'/>
-                                </td>
-                            </tr>
+                            {/*<tr>*/}
+                            {/*    <th>*/}
+                            {/*        <label>ID:{" "}</label>*/}
+                            {/*    </th>*/}
+                            {/*    <td>*/}
+                            {/*        <Field*/}
+                            {/*            type="number"*/}
+                            {/*            name="id"*/}
+                            {/*            id="id"*/}
+                            {/*        />*/}
+                            {/*        <ErrorMessage name='id' component={'div'} className='text-danger'/>*/}
+                            {/*    </td>*/}
+                            {/*</tr>*/}
                             <tr>
                                 <th>
                                     <label>Mã sản phẩm:{" "}</label>
